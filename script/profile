@@ -18,7 +18,7 @@ function profile {
 
   local id_install="$(echo $nm_os/$PKG_HOME | tr / _)"
   export PACKAGES="$PKG_HOME/packages/$id_install"
-  export WRKOBJDIR="$PKG_HOME/work"
+  export WRKOBJDIR="$PKG_HOME/work/pkgsrc"
   export DISTDIR="$PKG_HOME/distfiles"
 
   export PKG_OPT="env MAKEFLAGS= MFLAGS= PACKAGES=$PACKAGES WRKOBJDIR=$WRKOBJDIR DISTDIR=$DISTDIR PKG_RCD_SCRIPTS=no SKIP_LICENSE_CHECK=yes"
