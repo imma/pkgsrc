@@ -3,6 +3,17 @@
 function profile {
   local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
   PATH="$shome/sbin:$shome/bin:$shome/install/sbin:$shome/install/bin:$shome/exec:$PATH"
+
+  export PKG_HOME="$shome"
+
+  local id_install="$(echo $nm_os/$shome | tr / _)"
+  export PACKAGES="$shome/packages/$id_install"
+  export WRKOBJDIR="$shome/work"
+  export DISTDIR="$shome/distfiles"
+
+  export PKG_OPT="env MAKEFLAGS= MFLAGS= PACKAGES=$PACKAGES WRKOBJDIR=$WRKOBJDIR DISTDIR=$DISTDIR PKG_RCD_SCRIPTS=no SKIP_LICENSE_CHECK=yes"
+  export BMAKE="$PKG_OPT $shome/bin/bmake"
+  export PKGADD="$PKG_OPT PKG_PATH=$PACKAGES/All $shome/sbin/pkg_add"
 }
 
 profile
