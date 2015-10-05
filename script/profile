@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+function profile {
+  local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
+  PATH="$shome/sbin:$shome/bin:$shome/install/sbin:$shome/install/bin:$shome/exec:$PATH"
+}
+
+profile

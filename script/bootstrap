@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+function bootstrap {
+  local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
+  source "$shome/script/profile"
+
+  #git clone git@github.com:defn/pkgsrc vendor/pkgsrc
+  git clone ~/work/vendor-pkgsrc "$shome/vendor/pkgsrc"
+
+  local nm_os
+  case "$(uname -s)" in
+    Darwin)
+      nm_os="$(uname -s)_$(uname -r | cut -d. -f1)"
+      ;;
+    *)
+      nm_os="$(uname -s)"
+      ;;
+  esac
+
+  export PKG_HOME="$shome"
+
+  export CC="$(basename "$(which clang gcc | head -1)")"
+  export PKG_ID="$(echo $nm_os/$shome | tr / _)"
+
+  export PACKAGES="$shome/packages/$PKG_ID"
+  export WRKOBJDIR="$shome/work"
+  export DISTDIR="$shome/distfiles"
+
+  export PKG_OPT="env MAKEFLAGS= MFLAGS= PACKAGES=$PACKAGES WRKOBJDIR=$WRKOBJDIR DISTDIR=$DISTDIR PKG_RCD_SCRIPTS=no SKIP_LICENSE_CHECK=yes"
+  export BMAKE="$PKG_OPT $shome/bin/bmake"
+  export PKGADD="$PKG_OPT PKG_PATH=$PACKAGES/All $shome/sbin/pkg_add"
+
+  PATH="$shome/bin:$shome/sbin:$PATH"
+
+  rm -rf $WRKOBJDIR/bootstrap $PACKAGES/bootstrap.tgz
+  mkdir -p "$PACKAGES" "$WRKOBJDIR" "$DISTDIR"
+
+  (cd $shome/vendor/pkgsrc/bootstrap && \
+    $PKG_OPT ./bootstrap --prefix=$shome/install --unprivileged --abi 64 \
+      --prefer-pkgsrc=yes --ignore-user-check -j4 --compiler=$CC \
+      --mk-fragment=$shome/etc/mk.conf \
+      --workdir $WRKOBJDIR/bootstrap \
+      --gzip-binary-kit $PACKAGES/bootstrap.tgz \
+  )
+  #tar xvfz $PACKAGES/bootstrap.tgz -C /
+}
+
+bootstrap
