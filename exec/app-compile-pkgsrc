@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+function bootstrap {
+  local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
+  source "$shome/script/profile"
+
+  export CC="$(basename "$(which clang gcc | head -1)")"
+
+  local nm_pkg
+  for nm_pkg in "$@"; do
+    pushd "$shome/vendor/pkgsrc/$nm_pkg"
+    bmake install
+    popd
+  done
+}
+
+bootstrap

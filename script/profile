@@ -4,7 +4,7 @@ function profile {
   local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
   PATH="$shome/sbin:$shome/bin:$shome/install/sbin:$shome/install/bin:$shome/exec:$PATH"
 
-  export PKG_HOME="$shome"
+  export PKG_HOME="${PKG_HOME:-$shome}"
 
   local nm_os
   case "$(uname -s)" in
@@ -16,14 +16,14 @@ function profile {
       ;;
   esac
 
-  local id_install="$(echo $nm_os/$shome | tr / _)"
-  export PACKAGES="$shome/packages/$id_install"
-  export WRKOBJDIR="$shome/work"
-  export DISTDIR="$shome/distfiles"
+  local id_install="$(echo $nm_os/$PKG_HOME | tr / _)"
+  export PACKAGES="$PKG_HOME/packages/$id_install"
+  export WRKOBJDIR="$PKG_HOME/work"
+  export DISTDIR="$PKG_HOME/distfiles"
 
   export PKG_OPT="env MAKEFLAGS= MFLAGS= PACKAGES=$PACKAGES WRKOBJDIR=$WRKOBJDIR DISTDIR=$DISTDIR PKG_RCD_SCRIPTS=no SKIP_LICENSE_CHECK=yes"
-  export BMAKE="$PKG_OPT $shome/bin/bmake"
-  export PKGADD="$PKG_OPT PKG_PATH=$PACKAGES/All $shome/sbin/pkg_add"
+  export BMAKE="$PKG_OPT $PKG_HOME/bin/bmake"
+  export PKGADD="$PKG_OPT PKG_PATH=$PACKAGES/All $PKG_HOME/sbin/pkg_add"
 }
 
 profile
