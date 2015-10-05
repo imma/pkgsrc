@@ -6,7 +6,7 @@ function profile {
 
   export PKG_HOME="$shome"
 
-  local id_install="$(echo $nm_os/$shome | tr / _)"
+  local id_install="$(echo $id_install/$shome | tr / _)"
   export PACKAGES="$shome/packages/$id_install"
   export WRKOBJDIR="$shome/work"
   export DISTDIR="$shome/distfiles"
