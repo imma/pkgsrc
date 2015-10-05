@@ -8,7 +8,6 @@ function main {
   local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
   source "$shome/script/profile"
 
-  export PKG_HOME="$phome"
   export CC="$(basename "$(which clang gcc | head -1)")"
 
   mkdir -p "$PACKAGES" "$WRKOBJDIR" "$DISTDIR"
