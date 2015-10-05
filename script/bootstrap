@@ -2,9 +2,8 @@
 
 function bootstrap {
   local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
-  export PKG_HOME="$shome"
 
-  git clone -b pkgsrc_2015Q3 ~/work/vendor-pkgsrc "$shome/vendor/pkgsrc"
+  git clone -b pkgsrc_2015Q3 git@github.com:defn/pkgsrc "$shome/vendor/pkgsrc"
 }
 
 bootstrap
