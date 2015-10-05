@@ -2,12 +2,12 @@
 
 function bootstrap {
   local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
-  source "$shome/script/profile"
+  export PKG_HOME="$shome"
 
   echo info git clone -b pkgsrc_2015Q3 git@github.com:defn/pkgsrc vendor/pkgsrc
   git clone -b pkgsrc_2015Q3 ~/work/vendor-pkgsrc "$shome/vendor/pkgsrc"
 
-  export PKG_HOME="$shome"
+  require pkgsrc
   app compile bmake
   app compile pkgsrc misc/getopt
 }
