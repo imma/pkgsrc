@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+function main {
+  local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
+  source "$shome/script/profile"
+
+  local nm_pkg
+  for nm_pkg in "$@"; do
+    case "$nm_pkg" in
+      bmake)
+        app compile bmake
+        ;;
+      *)
+        app compile pkgsrc "$1"
+        ;;
+    esac
+  done
+}
+
+source sub "$0" "$@"

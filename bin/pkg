@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+function main {
+  local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
+}
+
+source sub "$0" "$@"
