@@ -13,7 +13,7 @@ function main {
   local nm_pkg
   for nm_pkg in "$@"; do
     pushd "$shome/vendor/pkgsrc/$nm_pkg"
-    bmake install
+    bmake "${PKG_TARGET:-install}"
     popd
   done
 }
