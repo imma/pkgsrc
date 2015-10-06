@@ -11,7 +11,7 @@ function main {
         app compile bmake
         ;;
       *)
-        app compile pkgsrc "$1"
+        app compile pkgsrc "$nm_pkg"
         ;;
     esac
   done

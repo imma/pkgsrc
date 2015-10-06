@@ -6,7 +6,7 @@ function main {
 
   local nm_pkg
   for nm_pkg in "$@"; do
-    PKG_TARGET=clean app compile pkgsrc "$1"
+    PKG_TARGET=clean app compile pkgsrc "$nm_pkg"
   done
 }
 
