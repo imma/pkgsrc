@@ -11,7 +11,7 @@ function main {
         app compile bmake
         ;;
       *)
-        PKG_TARGET=clean app compile pkgsrc "$nm_pkg"
+        PKG_TARGET=install app compile pkgsrc "$nm_pkg"
         ;;
     esac
   done

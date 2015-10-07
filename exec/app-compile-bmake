@@ -18,7 +18,7 @@ function main {
       --prefer-pkgsrc=yes --ignore-user-check -j4 --compiler=$CC \
       --mk-fragment=$PKG_HOME/etc/mk.conf \
       --workdir $WRKOBJDIR/bootstrap \
-      --gzip-binary-kit $PACKAGES/bootstrap.tgz \
+      $(if [[ "${PKG_TARGET:-}" == "package" ]]; then echo --gzip-binary-kit $PACKAGES/bootstrap.tgz; fi) \
   )
 }
 
