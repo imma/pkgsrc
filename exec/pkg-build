@@ -7,7 +7,7 @@ function main {
   local nm_pkg
   for nm_pkg in "$@"; do
     case "$nm_pkg" in
-      bmake)
+      bootstrap)
         app compile bmake
         ;;
       *)
