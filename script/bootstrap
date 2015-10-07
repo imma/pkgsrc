@@ -3,7 +3,7 @@
 function bootstrap {
   local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
 
-  git clone -b pkgsrc_2015Q3 git@github.com:defn/pkgsrc "$shome/vendor/pkgsrc"
+  git clone git@github.com:defn/pkgsrc "$shome/vendor/pkgsrc"
 }
 
 bootstrap
