@@ -3,8 +3,12 @@
 function bootstrap {
   local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
 
+  source "$shome/script/profile"
+
   git clone git@github.com:jsonn/pkgsrc "$shome/vendor/pkgsrc" || true
   git clone git@github.com:joyent/pkgsrc-wip "$shome/vendor/pkgsrc-wip" || true
+
+  pkg update
 }
 
 bootstrap
