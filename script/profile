@@ -4,8 +4,6 @@ function profile {
   local shome="$(unset CDPATH; cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
   PATH="$shome/sbin:$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$shome/exec:$PATH"
 
-  export PKG_HOME="${PKG_HOME:-$shome}"
-
   local nm_os
   case "$(uname -s)" in
     Darwin)
