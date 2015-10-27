@@ -23,7 +23,7 @@ function profile {
   export BMAKE="$PKG_OPT $PKG_HOME/bin/bmake"
   export PKGADD="$PKG_OPT PKG_PATH=$PACKAGES/All $PKG_HOME/sbin/pkg_add"
 
-  export SH="bash"
+  export SH="$(which bash)"
 }
 
 profile
