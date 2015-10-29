@@ -8,6 +8,8 @@ function bootstrap {
   git clone git@github.com:jsonn/pkgsrc "$shome/vendor/pkgsrc" || true
   git clone git@github.com:joyent/pkgsrc-wip "$shome/vendor/pkgsrc-wip" || true
 
+  ln -nfs ../../pkgsrc-wip/runit "$shome/vendor/pkgsrc/sysutils/runit"
+
   pkg package bootstrap
 }
 
