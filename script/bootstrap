@@ -9,7 +9,7 @@ function bootstrap {
   git clone --depth 1 git@github.com:joyent/pkgsrc-wip "$shome/vendor/pkgsrc-wip" || true
 
   rsync -ia "$shome/vendor//pkgsrc-wip/runit/." "$shome/vendor/pkgsrc/sysutils/runit/"
-  (cd "$shome/vendor/pkgsrc" && git apply --stat "$shome/sysutils-runit.patch")
+  perl -pe 's{SunOS}{Darwin}' -i "$shome/vendor/pkgsrc/sysutils/runit/Makefile"
 }
 
 bootstrap
