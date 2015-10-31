@@ -10,6 +10,12 @@ function bootstrap {
 
   rsync -ia "$shome/vendor//pkgsrc-wip/runit/." "$shome/vendor/pkgsrc/sysutils/runit/"
   perl -pe 's{SunOS}{Darwin}' -i "$shome/vendor/pkgsrc/sysutils/runit/Makefile"
+
+  case "$(uname -s)" in
+    Linux)
+      sudo aptitude install -y gcc-multilib g++-multilib libgoogle-perftools-dev
+      ;;
+  esac
 }
 
 bootstrap
