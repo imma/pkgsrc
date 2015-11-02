@@ -11,6 +11,7 @@ function main {
         tar xvfz "$PACKAGES/bootstrap.tgz" -C /
         ;;
       *)
+        export PKG_PATH="$PACKAGES/All"
         (cd $PACKAGES; pkg_add "$nm_pkg")
         ;;
     esac
