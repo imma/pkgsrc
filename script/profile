@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 function profile {
+  if [[ -z "${PKG_HOME:-}" ]]; then
+    return 0
+  fi
+
   local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
   PATH="$shome/sbin:$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$shome/exec:$PATH"
 
