@@ -2,9 +2,9 @@
 
 function main {
   if [[ -x "$(type -P bmake)" ]]; then
-    return 0
-  else
     return 1
+  else
+    return 0
   fi
 }
 
