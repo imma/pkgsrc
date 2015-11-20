@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export LANG=C # osx has some sed byte issue
+
 function main {
   local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
 }
