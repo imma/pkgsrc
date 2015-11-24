@@ -23,7 +23,7 @@ function profile {
   fi
 
   local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
-  PATH="$shome/sbin:$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$PKG_HOME/gnu/bin:$shome/exec:$PATH"
+  PATH="$shome/sbin:$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$PKG_HOME/install/gnu/bin:$shome/exec:$PATH"
 
   export PACKAGES="$PKG_HOME/packages/$(id_install)"
   export WRKOBJDIR="$PKG_HOME/tmp/pkgsrc"
