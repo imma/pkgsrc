@@ -1,5 +1,22 @@
 #!/usr/bin/env bash
 
+function id_install {
+  local nm_os
+  case "$(uname -s)" in
+    Darwin)
+      nm_os="$(uname -s)_$(uname -r | cut -d. -f1)"
+      ;;
+    Linux)
+      nm_os="$(uname -s)_$(uname -r | cut -d- -f1 | cut -d. -f1-3)"
+      ;;
+    *)
+      nm_os="$(uname -s)"
+      ;;
+  esac
+
+  echo "$nm_os/$PKG_HOME" | tr / _
+}
+
 function profile {
   if [[ -z "${PKG_HOME:-}" ]]; then
     return 0
@@ -8,18 +25,7 @@ function profile {
   local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
   PATH="$shome/sbin:$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$PKG_HOME/gnu/bin:$shome/exec:$PATH"
 
-  local nm_os
-  case "$(uname -s)" in
-    Darwin)
-      nm_os="$(uname -s)_$(uname -r | cut -d. -f1)"
-      ;;
-    *)
-      nm_os="$(uname -s)"
-      ;;
-  esac
-
-  local id_install="$(echo $nm_os/$PKG_HOME | tr / _)"
-  export PACKAGES="$PKG_HOME/packages/$id_install"
+  export PACKAGES="$PKG_HOME/packages/$(id_install)"
   export WRKOBJDIR="$PKG_HOME/tmp/pkgsrc"
   export DISTDIR="$PKG_HOME/distfiles"
 
