@@ -18,12 +18,14 @@ function id_install {
 }
 
 function profile {
-  if [[ -z "${PKG_HOME:-}" ]]; then
-    return 0
-  fi
-
   local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
-  PATH="$shome/sbin:$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$PKG_HOME/install/gnu/bin:$shome/exec:$PATH"
+
+  if [[ -z "${PKG_HOME:-}" ]]; then
+    PATH="$shome/sbin:$shome/bin:$shome/exec:$PATH"
+    return 0
+  else
+    PATH="$shome/sbin:$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$PKG_HOME/install/gnu/bin:$shome/exec:$PATH"
+  fi
 
   export PACKAGES="$PKG_HOME/packages/$(id_install)"
   export WRKOBJDIR="$PKG_HOME/tmp/pkgsrc"
