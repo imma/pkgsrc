@@ -19,7 +19,7 @@ function id_install {
 
 function profile {
   local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
-  source "$source/script/rc"
+  source "$shome/script/rc"
 
   if [[ -z "${PKG_HOME:-}" ]]; then
     PATH="$shome/sbin:$shome/bin:$shome/exec:$PATH"
