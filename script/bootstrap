@@ -2,7 +2,6 @@
 
 function bootstrap {
   local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
-
   source "$shome/script/profile"
 
   git clone --depth 1 git@github.com:jsonn/pkgsrc "$shome/vendor/pkgsrc" || true
@@ -13,12 +12,13 @@ function bootstrap {
 
   case "$(uname -s)" in
     Linux)
+      sudo aptitude update
       sudo aptitude install -y gcc-multilib g++-multilib libgoogle-perftools-dev
       ;;
   esac
 
   if [[ -n "${PKG_HOME:-}" ]]; then
-    pkg install bootstrap || pkg package bootstrap
+    pkg ensure bootstrap
   fi
 }
 
