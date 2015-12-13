@@ -26,7 +26,6 @@ function profile {
   fi
 
   PATH="$shome/sbin:$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$PKG_HOME/install/gnu/bin:$shome/exec:$PATH"
-  export MANPATH="$PKG_HOME/install/man:/usr/share/man:/usr/local/share/man"
 
   export PACKAGES="$PKG_HOME/packages/$(id_install)"
   export WRKOBJDIR="$PKG_HOME/tmp/pkgsrc"
