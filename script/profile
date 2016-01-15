@@ -29,7 +29,7 @@ function profile {
 
   local pth_cache="${BASEBOX_CACHE:-${PKG_HOME}}"
   export PACKAGES="$pth_cache/packages/$(id_install)"
-  export WRKOBJDIR="${TMPDIR:-/tmp}/pkgsrc"
+  export WRKOBJDIR="${shome}/tmp/pkgsrc"
   export DISTDIR="$pth_cache/distfiles"
 
   export PKG_OPT="env MAKEFLAGS= MFLAGS= PACKAGES=$PACKAGES WRKOBJDIR=$WRKOBJDIR DISTDIR=$DISTDIR PKG_RCD_SCRIPTS=no SKIP_LICENSE_CHECK=yes"
