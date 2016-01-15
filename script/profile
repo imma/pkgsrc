@@ -27,9 +27,10 @@ function profile {
 
   PATH="$shome/sbin:$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$PKG_HOME/install/gnu/bin:$shome/exec:$PATH"
 
-  export PACKAGES="$PKG_HOME/packages/$(id_install)"
-  export WRKOBJDIR="$PKG_HOME/tmp/pkgsrc"
-  export DISTDIR="$PKG_HOME/distfiles"
+  local pth_cache="${BASEBOX_CACHE:-${PKG_HOME}}"
+  export PACKAGES="$pth_cache/packages/$(id_install)"
+  export WRKOBJDIR="$pth_cache/tmp/pkgsrc"
+  export DISTDIR="$pth_cache/distfiles"
 
   export PKG_OPT="env MAKEFLAGS= MFLAGS= PACKAGES=$PACKAGES WRKOBJDIR=$WRKOBJDIR DISTDIR=$DISTDIR PKG_RCD_SCRIPTS=no SKIP_LICENSE_CHECK=yes"
   export BMAKE="$PKG_OPT $PKG_HOME/bin/bmake"
