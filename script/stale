@@ -6,9 +6,7 @@ function main {
 
   if [[ -x "$(type -P bmake)" ]]; then
     if [[ -d "$shome/vendor/pkgsrc" ]]; then
-      if [[ -d "$shome/vendor/pkgsrc-wip" ]]; then
-        return 1
-      fi
+      return 1
     fi
   fi
 
