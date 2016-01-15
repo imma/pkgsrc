@@ -5,10 +5,6 @@ function bootstrap {
   source "$shome/script/profile"
 
   git clone --depth 1 git@github.com:jsonn/pkgsrc "$shome/vendor/pkgsrc" || true
-  git clone --depth 1 git@github.com:joyent/pkgsrc-wip "$shome/vendor/pkgsrc-wip" || true
-
-  rsync -ia "$shome/vendor//pkgsrc-wip/runit/." "$shome/vendor/pkgsrc/sysutils/runit/"
-  perl -pe 's{SunOS}{Darwin}' -i "$shome/vendor/pkgsrc/sysutils/runit/Makefile"
 
   case "$(uname -s)" in
     Linux)
