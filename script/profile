@@ -27,7 +27,7 @@ function profile {
 
   PATH="$shome/sbin:$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$PKG_HOME/install/gnu/bin:$shome/exec:$PATH"
 
-  local pth_cache="${BASEBOX_CACHE:-${PKG_HOME}}"
+  local pth_cache="${BASEBOX_CACHE:-/vagrant}"
   export DISTDIR="$pth_cache/distfiles"
   export PACKAGES="$pth_cache/packages/$(id_install)"
   export WRKOBJDIR="${shome}/tmp/pkgsrc_$(id_install)"
