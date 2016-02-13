@@ -8,7 +8,6 @@ function bootstrap {
 
   case "$(uname -s)" in
     Linux)
-      sudo aptitude update
       sudo aptitude install -y gcc-multilib g++-multilib libgoogle-perftools-dev
       ;;
   esac
