@@ -3,10 +3,7 @@
 function id_install {
   local nm_os
   case "$(uname -s)" in
-    Darwin)
-      nm_os="$(uname -s)_$(uname -r | cut -d. -f1)"
-      ;;
-    Linux)
+    Darwin|Linux)
       nm_os="$(uname -s)_$(uname -r | cut -d- -f1 | cut -d. -f1-3)"
       ;;
     *)
