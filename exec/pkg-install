@@ -12,7 +12,7 @@ function main {
         ;;
       *)
         export PKG_PATH="$PACKAGES/All"
-        (cd $PACKAGES; pkg_add "$nm_pkg")
+        (cd $PACKAGES; $PKGADD "$nm_pkg")
         ;;
     esac
   done
