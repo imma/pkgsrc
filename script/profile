@@ -31,7 +31,7 @@ function profile {
 
   export DISTDIR="$pth_cache/distfiles"
   export PACKAGES="$pth_cache/packages/${ID_INSTALL}"
-  export WRKOBJDIR="${shome}/tmp/pkgsrc_${ID_INSTALL}"
+  export WRKOBJDIR="${TMP:-${TMPDIR:-/tmp}}/pkgsrc_${ID_INSTALL}"
 
   export PKG_OPT="env MAKEFLAGS= MFLAGS= PACKAGES=$PACKAGES WRKOBJDIR=$WRKOBJDIR DISTDIR=$DISTDIR PKG_RCD_SCRIPTS=no SKIP_LICENSE_CHECK=yes"
 
