@@ -6,6 +6,14 @@ function main {
 
   (cd "$shome/vendor/pkgsrc" && git pull)
   pkg_admin -K "$PKG_HOME/install/var/db/pkg" fetch-pkg-vulnerabilities
+
+  if [[ -x "$(which brew 2>/dev/null || true)" ]]; then
+    brew update
+  fi
+
+  if [[ -x "$(which aptitude 2>/dev/null || true)" ]]; then
+    sudo aptitude update
+  fi
 }
 
 source sub "$0" "$@"
