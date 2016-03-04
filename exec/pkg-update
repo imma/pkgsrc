@@ -4,7 +4,10 @@ function main {
   local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
   source "$shome/script/profile"
 
-  (cd "$shome/vendor/pkgsrc" && git pull)
+  pushd "$shome/vendor/pkgsrc"
+  git fetch
+  git reset --hard origin/master
+  popd
   pkg_admin -K "$PKG_HOME/install/var/db/pkg" fetch-pkg-vulnerabilities
 
   if [[ -x "$(which brew 2>/dev/null || true)" ]]; then
