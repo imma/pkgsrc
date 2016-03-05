@@ -4,16 +4,19 @@ function bootstrap {
   local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
   source "$shome/script/profile"
 
-  git clone --depth 1 git@github.com:jsonn/pkgsrc "$shome/vendor/pkgsrc" || true
+  if [[ ! -d "$shome/vendor/pkgsrc" ]]; then
+    git clone --depth 1 git@github.com:jsonn/pkgsrc "$shome/vendor/pkgsrc" || true
+  fi
 
   case "$(uname -s)" in
     Linux)
-      sudo aptitude install -y gcc-multilib g++-multilib libgoogle-perftools-dev
+      sudo aptitude install -y gcc-multilib g++-multilib libgoogle-perftools-dev # TODO what relies on these packages?
       ;;
   esac
 
   if [[ -n "${PKG_HOME:-}" ]]; then
     pkg ensure bootstrap
+    pkg pkgtools/pkg_rolling-replace
   fi
 }
 
