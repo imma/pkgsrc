@@ -8,10 +8,11 @@ function main {
   for nm_pkg in "$@"; do
     case "$nm_pkg" in
       bootstrap)
-        tar xvfz "$PACKAGES/bootstrap.tgz" -C /
+        echo "ERROR: dont know how to upgrade bookstrap, yet" 1>&2
+        return 1
         ;;
       *)
-        (cd $PACKAGES; $PKGADD "$nm_pkg")
+        PKG_TARGET=update app compile pkgsrc "$nm_pkg"
         ;;
     esac
   done

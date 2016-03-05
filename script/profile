@@ -36,7 +36,7 @@ function profile {
   export PKG_OPT="env MAKEFLAGS= MFLAGS= PACKAGES=$PACKAGES WRKOBJDIR=$WRKOBJDIR DISTDIR=$DISTDIR PKG_RCD_SCRIPTS=no SKIP_LICENSE_CHECK=yes"
 
   export BMAKE="$PKG_OPT $PKG_HOME/install/bin/bmake"
-  export PKGADD="$PKG_OPT PKG_PATH=$PACKAGES/All $PKG_HOME/install/sbin/pkg_add -u"
+  export PKGADD="$PKG_OPT PKG_PATH=$PACKAGES/All $PKG_HOME/install/sbin/pkg_add -uu"
 
   export SH="$(which bash)"
 }
