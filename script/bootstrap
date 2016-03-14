@@ -16,8 +16,8 @@ function bootstrap {
 
   if [[ -n "${PKG_HOME:-}" ]]; then
     if [[ ! -d "${PKG_HOME}" ]]; then
-      if ! install -d -u "$(id -un)" -g "$(id -gn)" "${PKG_HOME}"; then
-        sudo install -d -u "$(id -un)" -g "$(id -gn)" "${PKG_HOME}" || true
+      if ! install -d -o "$(id -un)" -g "$(id -gn)" "${PKG_HOME}"; then
+        sudo install -d -o "$(id -un)" -g "$(id -gn)" "${PKG_HOME}" || true
       fi
     fi
     pkg ensure bootstrap
