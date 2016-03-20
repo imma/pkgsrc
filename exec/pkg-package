@@ -8,10 +8,10 @@ function main {
   for nm_pkg in "$@"; do
     case "$nm_pkg" in
       bootstrap)
-        PKG_TARGET=package app compile bmake
+        PKG_TARGET=package block compile bmake
         ;;
       *)
-        PKG_TARGET=package app compile pkgsrc "$nm_pkg"
+        PKG_TARGET=package block compile pkgsrc "$nm_pkg"
         ;;
     esac
   done

@@ -11,7 +11,7 @@ function main {
         rm --vf "$PACKAGES/bootstrap.tgz"
         ;;
       *)
-        PKG_TARGET=clean app compile pkgsrc "$nm_pkg"
+        PKG_TARGET=clean block compile pkgsrc "$nm_pkg"
         ;;
     esac
   done
