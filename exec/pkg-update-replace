@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+function main {
+  local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
+  source "$shome/script/profile"
+
+  local nm_pkg="$1"; shift
+  PKG_TARGET=replace block compile pkgsrc "$nm_pkg"
+}
+
+source sub "$0" "$@"
+
+
