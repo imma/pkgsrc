@@ -16,7 +16,7 @@ function main {
   (cd $shome/vendor/pkgsrc/bootstrap && \
     $PKG_OPT ./bootstrap --prefix=$PKG_HOME/install --unprivileged --abi 64 \
       --prefer-pkgsrc=yes --ignore-user-check -j4 --compiler=$CC \
-      --mk-fragment=$PKG_HOME/etc/mk.conf \
+      --mk-fragment=$HOME/etc/mk.conf \
       --workdir $WRKOBJDIR/bootstrap \
       $(if [[ "${PKG_TARGET:-}" == "package" ]]; then echo --gzip-binary-kit $PACKAGES/bootstrap.tgz; fi) \
   )
