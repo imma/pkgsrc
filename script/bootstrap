@@ -23,6 +23,7 @@ function bootstrap {
     pkg ensure bootstrap
     pkg ensure pkgtools/pkg_rolling-replace
     pkg ensure pkgtools/pkg_chk
+    pkg ensure pkgtools/pkg_tarup
   fi
 }
 
