@@ -39,6 +39,8 @@ function profile {
   export PKGADD="$PKG_OPT PKG_PATH=$PACKAGES/All $PKG_HOME/install/sbin/pkg_add -uu"
 
   export SH="$(which bash)"
+
+  export PKGSRCDIR="$shome/vendor/pkgsrc"
 }
 
 profile
