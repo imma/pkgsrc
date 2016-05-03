@@ -13,7 +13,7 @@ function main {
   local nm_pkg
   for nm_pkg in "$@"; do
     pushd "$shome/vendor/pkgsrc/$nm_pkg" >/dev/null
-    $BMAKE "${PKG_TARGET:-install}"
+    $BMAKE "${PKG_TARGET:-install}" CLEANDEPENDS=yes
     popd >/dev/null
   done
 }
