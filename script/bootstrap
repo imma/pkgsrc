@@ -8,12 +8,6 @@ function bootstrap {
     git clone --depth 1 git@github.com:jsonn/pkgsrc "$shome/vendor/pkgsrc" || true
   fi
 
-  case "$(uname -s)" in
-    Linux)
-      sudo aptitude install -y gcc-multilib g++-multilib libgoogle-perftools-dev # TODO what relies on these packages?
-      ;;
-  esac
-
   if [[ -n "${PKG_HOME:-}" ]]; then
     if [[ ! -d "${PKG_HOME}" ]]; then
       if ! install -d -o "$(id -un)" -g "$(id -gn)" "${PKG_HOME}"; then
@@ -24,6 +18,7 @@ function bootstrap {
     pkg ensure pkgtools/pkg_rolling-replace
     pkg ensure pkgtools/pkg_chk
     pkg ensure pkgtools/pkg_tarup
+    pkg ensure pkgtools/pkgin
   fi
 }
 
