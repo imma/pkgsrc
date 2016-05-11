@@ -4,8 +4,8 @@ function update {
   local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
   source "$shome/script/profile"
 
-  cd "${BASEBOX_CACHE}/${ID_INSTALL}/All"
-  pkg_ino -X *.tgz | gzip -9 > pkg_summary.gz.$$
+  cd "${BASEBOX_CACHE}/packages/${ID_INSTALL}/All"
+  pkg_info -X *.tgz | gzip -9 > pkg_summary.gz.$$
   mv -f pkg_summary.gz.$$ pkg_summary.gz
 }
 
