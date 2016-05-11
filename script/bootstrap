@@ -7,7 +7,7 @@ function bootstrap {
   if [[ -d "$shome/vendor/pkgsrc" ]]; then
     git checkout -b pkgsrc_2016Q1
   else
-    git clone -b pkgsrc_2016Q1 git@github.com:jsonn/pkgsrc "$shome/vendor/pkgsrc" || true
+    git clone --depth 1 -b pkgsrc_2016Q1 git@github.com:jsonn/pkgsrc "$shome/vendor/pkgsrc" || true
   fi
 
   if [[ -n "${PKG_HOME:-}" ]]; then
