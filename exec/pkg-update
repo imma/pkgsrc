@@ -3,7 +3,7 @@
 function update_pkgsrc {
   pushd "$shome/vendor/pkgsrc"
   git fetch
-  git reset --hard origin/trunk
+  git reset --hard origin/pkgsrc_2016Q1
   popd
   pkg_admin -K "$PKG_HOME/install/var/db/pkg" fetch-pkg-vulnerabilities
 }
