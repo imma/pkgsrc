@@ -10,6 +10,9 @@ function bootstrap {
     git clone --depth 1 -b pkgsrc_2016Q1 git@github.com:jsonn/pkgsrc "$shome/vendor/pkgsrc" || true
   fi
 
+  mkdir -p "$(dirname "${DISTDIR}")" || sudo install -d -o $(id -un) -g $(id -gn) "$(dirname "${DISTDIR}")"
+  mkdir -p "$DISTDIR" "$PACKAGES"
+
   if [[ -n "${PKG_HOME:-}" ]]; then
     if [[ ! -d "${PKG_HOME}" ]]; then
       if ! install -d -o "$(id -un)" -g "$(id -gn)" "${PKG_HOME}"; then
