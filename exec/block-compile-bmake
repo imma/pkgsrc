@@ -5,7 +5,7 @@ function main {
   local pth_cache="$1"; shift
   local pth_env="$1"; shift
 
-  local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
+  local shome="${_pkgsrc_home:-"$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"}"
   source "$shome/script/profile"
 
   export CC="$(basename "$(which clang gcc | head -1)")"
