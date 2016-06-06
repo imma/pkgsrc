@@ -27,7 +27,7 @@ function profile {
   # TODO figure out which variables are env, make, conf
   local pth_cache="${BASEBOX_CACHE:-/vagrant}"
 
-  export ID_INSTALL="$(id_install)"
+  export ID_INSTALL="${ID_INSTALL:-$(id_install)}"
 
   export DISTDIR="$pth_cache/distfiles"
   export PACKAGES="$pth_cache/packages/${ID_INSTALL}"
