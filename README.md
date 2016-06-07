@@ -1,5 +1,1 @@
-Setup
-=====
-
-For bash, source `script/profile` to expose the pkgsrc commands.  Requires the
-`defn/app` project installed and sourced.
+Visit http://defn.sh/pkgsrc/ or open `docs/index.html`
