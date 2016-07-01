@@ -5,9 +5,9 @@ function bootstrap {
   source "$shome/script/profile"
 
   if [[ -d "$shome/vendor/pkgsrc" ]]; then
-    git checkout -b pkgsrc_2016Q1
+    git checkout -b "${PKGSRC_BRANCH}"
   else
-    git clone --depth 1 -b pkgsrc_2016Q1 git@github.com:jsonn/pkgsrc "$shome/vendor/pkgsrc" || true
+    git clone --depth 1 -b "${PKGSRC_BRANCH}" git@github.com:jsonn/pkgsrc "$shome/vendor/pkgsrc" || true
   fi
 
   mkdir -p "$(dirname "${DISTDIR}")" || sudo install -d -o $(id -un) -g $(id -gn) "$(dirname "${DISTDIR}")"
