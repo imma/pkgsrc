@@ -26,6 +26,8 @@ function profile {
 
   export PKGSRC_BRANCH='pkgsrc_2016Q2'
 
+  ln -nfs "$PACKAGES/All" "$shome/vendor/pkgsrc/All"
+
   # TODO figure out which variables are env, make, conf
   local pth_cache="${BASEBOX_CACHE:-/vagrant}"
 
@@ -38,7 +40,7 @@ function profile {
   export PKG_OPT="env MAKEFLAGS= MFLAGS= PACKAGES=$PACKAGES WRKOBJDIR=$WRKOBJDIR DISTDIR=$DISTDIR PKG_RCD_SCRIPTS=no SKIP_LICENSE_CHECK=yes"
 
   export BMAKE="$PKG_OPT $PKG_HOME/install/bin/bmake"
-  export PKGADD="$PKG_OPT PKG_PATH=$PACKAGES/All $PKG_HOME/install/sbin/pkg_add -uu"
+  export PKGADD="$PKG_OPT $PKG_HOME/install/sbin/pkg_add -uu"
 
   export SH="$(which bash)"
 
