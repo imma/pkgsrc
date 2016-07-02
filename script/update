@@ -4,6 +4,9 @@ function update {
   local shome="${_pkgsrc_home:-"$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"}"
   source "$shome/script/profile"
 
+  mkdir -p "$(dirname "${DISTDIR}")" || sudo install -d -o $(id -un) -g $(id -gn) "$(dirname "${DISTDIR}")"
+  mkdir -p "$DISTDIR" "$PACKAGES"
+
   ln -nfs "$PACKAGES/All" "$shome/vendor/pkgsrc/All"
   (cd "$shome/vendor/pkgsrc"; set +f; for a in *; do if [[ "$a" != "All" ]]; then ln -nfs All "$PACKAGES/$a"; fi; done)
   if [[ -d "${BASEBOX_CACHE}/packages/${ID_INSTALL}/All" ]]; then
