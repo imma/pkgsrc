@@ -11,7 +11,7 @@ function id_install {
       ;;
   esac
 
-  echo "$nm_os/$PKG_HOME" | tr / _ | tr . _ | perl -pe 's{__+}{_}'
+  echo "$nm_os/$PKG_HOME/$PKGSRC_BRANCH" | tr / _ | tr . _ | perl -pe 's{__+}{_}'
 }
 
 function profile {
