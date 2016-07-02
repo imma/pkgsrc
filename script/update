@@ -5,6 +5,7 @@ function update {
   source "$shome/script/profile"
 
   ln -nfs "$PACKAGES/All" "$shome/vendor/pkgsrc/All"
+  (set +f; ln -nfs $shome/vendor/pkgsrc/* "$PACKAGES/" 2>&- || true)
   cd "${BASEBOX_CACHE}/packages/${ID_INSTALL}/All"
   pkg_info -X *.tgz | gzip -9 > pkg_summary.gz.$$
   mv -f pkg_summary.gz.$$ pkg_summary.gz
