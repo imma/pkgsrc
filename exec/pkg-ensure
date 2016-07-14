@@ -10,7 +10,6 @@ function main {
   pkg install "$nm_pkg" \
     || { pkg package "$nm_build" && pkg install "$nm_pkg"; } \
     || { pkg upgrade "$nm_build" && pkg package "$nm_build" && pkg install "$nm_pkg"; }
-  ;;
 }
 
 source sub "$0" "$@"
