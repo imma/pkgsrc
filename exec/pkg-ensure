@@ -7,33 +7,10 @@ function main {
   local nm_pkg="$1"; shift
   local nm_build="${1:-$nm_pkg}"
 
-  case "$nm_pkg" in
-    sysutils/htop|htop)
-      case "$(uname -s)" in
-        Darwin)
-          brew install htop
-          ;;
-        Linux)
-          sudo aptitude install -y htop
-          ;;
-      esac
-      ;;
-    sysutils/runit|runit)
-      case "$(uname -s)" in
-        Darwin)
-          brew install runit
-          ;;
-        Linux)
-          sudo aptitude install -y runit
-          ;;
-      esac
-      ;;
-    *)
-      pkg install "$nm_pkg" \
-        || { pkg package "$nm_build" && pkg install "$nm_pkg"; } \
-        || { pkg upgrade "$nm_build" && pkg package "$nm_build" && pkg install "$nm_pkg"; }
-      ;;
-  esac
+  pkg install "$nm_pkg" \
+    || { pkg package "$nm_build" && pkg install "$nm_pkg"; } \
+    || { pkg upgrade "$nm_build" && pkg package "$nm_build" && pkg install "$nm_pkg"; }
+  ;;
 }
 
 source sub "$0" "$@"
