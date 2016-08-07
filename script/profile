@@ -14,7 +14,7 @@ function id_install {
   echo "$nm_os/$PKG_HOME/$PKGSRC_BRANCH" | tr / _ | tr . _ | perl -pe 's{__+}{_}'
 }
 
-function profile {
+function _pkgsrc_profile {
   local shome="${_pkgsrc_home:-"$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"}"
 
   if [[ -z "${PKG_HOME:-}" ]]; then
@@ -45,4 +45,4 @@ function profile {
   export PKGSRCDIR="$shome/vendor/pkgsrc"
 }
 
-profile
+_pkgsrc_profile
