@@ -6,7 +6,7 @@ function main {
 
   local nm_pkg
   for nm_pkg in "$@"; do
-    (set +f; ls -d "$shome"/vendor/pkgsrc/*/*"$nm_pkg"* 2>&- || true)
+    (set +f; ls -d "$shome"/vendor/pkgsrc/*/*"$nm_pkg"* 2>/dev/null || true)
   done | sed "s#$shome##" | cut -d/ -f4- | sort
 }
 
