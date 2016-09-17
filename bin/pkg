@@ -3,7 +3,7 @@
 export LANG=C # osx has some sed byte issue
 
 function main {
-  local shome="${_pkgsrc_home:-"$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"}"
+  local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
 }
 
 source sub "$0" "$@"
