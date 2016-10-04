@@ -7,8 +7,11 @@ function main {
   local nm_pkg="$1"; shift
   local nm_build="${1:-$nm_pkg}"
 
-  pkg package "$nm_build"
-  pkg install "$nm_build"
+  if ! pkgin install "$nm_build"; then
+    pkg package "$nm_build"
+    pkg install "$nm_build"
+    "$shome/script/update"
+  fi
 }
 
 source sub "$0" "$@"

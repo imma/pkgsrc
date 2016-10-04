@@ -32,9 +32,10 @@ function _pkgsrc_profile {
 
   export DISTDIR="$pth_cache/distfiles"
 
-  export PACKAGES="$shome/vendor/pkgsrc/packages"
+  export PACKAGES="$pth_cache/packages/${ID_INSTALL}"
+  export WRKOBJDIR="${TMP:-${TMPDIR:-/tmp}}/pkgsrc_${ID_INSTALL}"
 
-  export PKG_OPT="env MAKEFLAGS= MFLAGS= DISTDIR=$DISTDIR PACKAGES=$PACKAGES PKG_RCD_SCRIPTS=no SKIP_LICENSE_CHECK=yes"
+  export PKG_OPT="env MAKEFLAGS= MFLAGS= DISTDIR=$DISTDIR WRKOBJDIR=$WRKOBJDIR PACKAGES=$PACKAGES PKG_RCD_SCRIPTS=no SKIP_LICENSE_CHECK=yes"
 
   export BMAKE="$PKG_OPT bmake"
 

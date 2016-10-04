@@ -19,10 +19,8 @@ function bootstrap {
       fi
     fi
     pkg ensure bootstrap
-    pkg ensure pkgtools/pkg_rolling-replace
-    pkg ensure pkgtools/pkg_chk
-    pkg ensure pkgtools/pkg_tarup
     pkg ensure pkgtools/pkgin
+    echo "file://$PACKAGES/All" > "$PKG_HOME/install/etc/pkgin/repositories.conf"
   fi
 }
 
