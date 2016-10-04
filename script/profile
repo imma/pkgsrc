@@ -26,16 +26,13 @@ function _pkgsrc_profile {
 
   export PKGSRC_BRANCH='pkgsrc_2016Q2'
 
-  # TODO figure out which variables are env, make, conf
   local pth_cache="${BASEBOX_CACHE:-/vagrant}"
 
   export ID_INSTALL="$(id_install)"
 
   export DISTDIR="$pth_cache/distfiles"
-  export PACKAGES="$pth_cache/packages/${ID_INSTALL}"
-  export WRKOBJDIR="${TMP:-${TMPDIR:-/tmp}}/pkgsrc_${ID_INSTALL}"
 
-  export PKG_OPT="env MAKEFLAGS= MFLAGS= PACKAGES=$PACKAGES WRKOBJDIR=$WRKOBJDIR DISTDIR=$DISTDIR PKG_RCD_SCRIPTS=no SKIP_LICENSE_CHECK=yes"
+  export PKG_OPT="env MAKEFLAGS= MFLAGS= DISTDIR=$DISTDIR PKG_RCD_SCRIPTS=no SKIP_LICENSE_CHECK=yes"
 
   export BMAKE="$PKG_OPT $PKG_HOME/install/bin/bmake"
   export PKGADD="$PKG_OPT $PKG_HOME/install/sbin/pkg_add -uu"
