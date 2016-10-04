@@ -7,9 +7,7 @@ function main {
   local nm_pkg="$1"; shift
   local nm_build="${1:-$nm_pkg}"
 
-  pkg install "$nm_pkg" \
-    || { pkg package "$nm_build" && pkg install "$nm_pkg"; } \
-    || { pkg upgrade "$nm_build" && pkg package "$nm_build" && pkg install "$nm_pkg"; }
+  pkg build "$nm_build" || { pkg upgrade "$nm_build" && pkg package "$nm_build"; }
 }
 
 source sub "$0" "$@"
