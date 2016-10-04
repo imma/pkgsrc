@@ -11,7 +11,7 @@ function main {
         tar xvfz "$PACKAGES/bootstrap.tgz" -C /
         ;;
       *)
-        (cd $PACKAGES; $PKGADD "$nm_pkg")
+        PKG_TARGET=install block compile pkgsrc "$nm_pkg"
         ;;
     esac
   done

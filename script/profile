@@ -36,8 +36,7 @@ function _pkgsrc_profile {
 
   export PKG_OPT="env MAKEFLAGS= MFLAGS= DISTDIR=$DISTDIR PACKAGES=$PACKAGES PKG_RCD_SCRIPTS=no SKIP_LICENSE_CHECK=yes"
 
-  export BMAKE="$PKG_OPT $PKG_HOME/install/bin/bmake"
-  export PKGADD="$PKG_OPT $PKG_HOME/install/sbin/pkg_add -uu"
+  export BMAKE="$PKG_OPT bmake"
 
   export SH="$(which bash)"
 
