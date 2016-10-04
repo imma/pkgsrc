@@ -7,11 +7,21 @@ function main {
   local nm_pkg="$1"; shift
   local nm_build="${1:-$nm_pkg}"
 
-  if ! pkgin install "$nm_build"; then
-    pkg install "$nm_build" || true
-    pkg package "$nm_build"
-    "$shome/script/update"
-  fi
+  case "$nm_build" in
+    bootstrap)
+      if ! pkg install "$nm_build"; then
+        pkg package"$nm_build"
+      fi
+      ;;
+    *)
+      if ! pkgin install "$nm_build"; then
+        if pkg package"$nm_build"; then
+          pkg install "$nm_build"
+        fi
+        "$shome/script/update"
+      fi
+      ;;
+  esac
 }
 
 source sub "$0" "$@"
