@@ -10,11 +10,19 @@ function main {
   case "$nm_build" in
     bootstrap)
       if ! pkg install "$nm_build"; then
+        if [[ -n "${PKG_BINARY_ONLY:-}" ]]; then
+          return 1
+        fi
+
         pkg package"$nm_build"
       fi
       ;;
     *)
       if ! pkgin install "$nm_build"; then
+        if [[ -n "${PKG_BINARY_ONLY:-}" ]]; then
+          return 1
+        fi
+
         if pkg package "$nm_build"; then
           "$shome/script/update"
           pkgin install "$nm_build" || true
