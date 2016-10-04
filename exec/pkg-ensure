@@ -16,9 +16,9 @@ function main {
     *)
       if ! pkgin install "$nm_build"; then
         if pkg package "$nm_build"; then
-          pkg install "$nm_build"
+          "$shome/script/update"
+          pkgin install "$nm_build" || true
         fi
-        "$shome/script/update"
       fi
       ;;
   esac
