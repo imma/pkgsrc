@@ -42,6 +42,8 @@ function _pkgsrc_profile {
   export SH="$(which bash)"
 
   export PKGSRCDIR="$shome/vendor/pkgsrc"
+
+  export PKG_REPOS="file://$PACKAGES/All"
 }
 
 _pkgsrc_profile

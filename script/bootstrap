@@ -18,8 +18,6 @@ function bootstrap {
         sudo install -d -o "$(id -un)" -g "$(id -gn)" "${PKG_HOME}" || true
       fi
     fi
-    mkdir -p "$PKG_HOME/install/etc/pkgin"
-    echo "file://$PACKAGES/All" > "$PKG_HOME/install/etc/pkgin/repositories.conf"
     pkg ensure bootstrap
     pkg ensure pkgtools/pkgin
   fi

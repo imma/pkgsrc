@@ -4,6 +4,9 @@ export LANG=C # osx has some sed byte issue
 
 function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
+  source "$shome/script/profile"
+
+  exec pkgin "$@"
 }
 
 source sub "$0" "$@"
