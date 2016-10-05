@@ -18,7 +18,7 @@ function main {
       fi
       ;;
     *)
-      if ! type -P pkgin >/dev/null || ! pkgin install "${nm_pkg#*/}"; then
+      if ! type -P pkgin >/dev/null || ! pkgin -y install "${nm_pkg#*/}"; then
         if [[ -n "${PKG_BINARY_ONLY:-}" ]]; then
           return 1
         fi
@@ -26,7 +26,7 @@ function main {
         pkg package "$nm_build" || true
         "$shome/script/update"
         if type -P pkgin >/dev/null; then
-          pkgin install "${nm_pkg#*/}"
+          pkgin -y install "${nm_pkg#*/}"
         else
           pkg_add "$(set +f; ls -trhd "${PACKAGES}/All/"${nm_pkg#*/}-*.tgz 2>/dev/null | tail -1)"
           "$shome/script/update"
