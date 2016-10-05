@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+function main {
+  local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
+  source "$shome/script/profile"
+
+  local nm_pkg
+  for nm_pkg in "$@"; do
+    (set +f; ls -d "$shome"/vendor/pkgsrc/*/*"$nm_pkg"* 2>/dev/null || true)
+  done | sed "s#$shome##" | cut -d/ -f4- | sort
+}
+
+source sub "$0" "$@"
