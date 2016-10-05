@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+function main {
+  local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
+  source "$shome/script/profile"
+
+  mkdir -p "$(dirname "${DISTDIR}")" || sudo install -d -o $(id -un) -g $(id -gn) "$(dirname "${DISTDIR}")"
+  mkdir -p "$DISTDIR" "$PACKAGES"
+
+  if [[ -d "${BASEBOX_CACHE}/packages/${ID_INSTALL}/All" ]]; then
+    cd "${BASEBOX_CACHE}/packages/${ID_INSTALL}/All"
+    (set +f; pkg_info -X *.tgz) | gzip -9 > pkg_summary.gz.$$
+    mv -f pkg_summary.gz.$$ pkg_summary.gz
+    if type -P pkgin >/dev/null; then
+      pkgin update
+    fi
+  fi
+}
+
+source sub "$0" "$@"
