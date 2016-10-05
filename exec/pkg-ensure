@@ -10,7 +10,7 @@ function main {
   case "$nm_build" in
     bootstrap)
       if ! pkg install "$nm_build"; then
-        if [[ -n "${PKG_BINARY_ONLY:-}" ]]; then
+        if [[ -z "${PKG_BUILD_SOURCE:-}" ]]; then
           return 1
         fi
 
@@ -19,7 +19,7 @@ function main {
       ;;
     *)
       if ! type -P pkgin >/dev/null || ! pkgin -y install "${nm_pkg#*/}"; then
-        if [[ -n "${PKG_BINARY_ONLY:-}" ]]; then
+        if [[ -z "${PKG_BUILD_SOURCE:-}" ]]; then
           return 1
         fi
 
