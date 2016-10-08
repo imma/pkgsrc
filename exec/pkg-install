@@ -8,6 +8,9 @@ function main {
   for nm_pkg in "$@"; do
     case "$nm_pkg" in
       bootstrap)
+        if [[ ! -d "$PKG_HOME" ]]; then
+          sudo install -d -o $(id -un) -g $(id -gn) -m 755 "$PKG_HOME"
+        fi
         tar xvfz "$PACKAGES/bootstrap.tgz" -C /
         ;;
       *)
