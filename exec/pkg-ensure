@@ -16,6 +16,8 @@ function main {
 
         pkg package"$nm_build"
       fi
+      pkg_add "$(set +f; ls -trhd "${PACKAGES}/All/"${nm_pkg#*/}-*.tgz 2>/dev/null | tail -1)"
+      pkg update cache
       ;;
     *)
       if ! type -P pkgin >/dev/null || ! pkgin -y install "${nm_pkg#*/}"; then
@@ -24,12 +26,12 @@ function main {
         fi
 
         pkg package "$nm_build" || true
-        "$shome/script/update"
+        pkg update cache
         if type -P pkgin >/dev/null; then
           pkgin -y install "${nm_pkg#*/}"
         else
           pkg_add "$(set +f; ls -trhd "${PACKAGES}/All/"${nm_pkg#*/}-*.tgz 2>/dev/null | tail -1)"
-          "$shome/script/update"
+          pkg update cache
         fi
       fi
       ;;
