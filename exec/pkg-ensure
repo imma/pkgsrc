@@ -14,7 +14,7 @@ function main {
           return 1
         fi
 
-        pkg package"$nm_build"
+        pkg package "$nm_build"
       fi
       pkg_add "$(set +f; ls -trhd "${PACKAGES}/All/"pkgin-*.tgz 2>/dev/null | tail -1)"
       pkg update cache
