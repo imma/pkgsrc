@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+function main {
+  local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
+  source "$shome/script/profile"
+
+  local nm_pkg
+  for nm_pkg in "$@"; do
+    PKG_TARGET=bin-install block compile pkgsrc "$nm_pkg"
+  done
+}
+
+source sub "$0" "$@"
