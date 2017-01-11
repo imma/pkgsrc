@@ -35,7 +35,7 @@ function bootstrap {
         popd
 
         pkg ensure devel/gettext-tools || true
-        pushd "${WRKOBJDIR}/devel/gettext-tools/work"/gettext-tools-*
+        pushd "${WRKOBJDIR}/devel/gettext-tools/work"/gettext-*
         env CWRAPPERS_CONFIG_DIR=$(pwd)/../.cwrapper/config bmake
         popd
         pkg ensure devel/gettext-tools
