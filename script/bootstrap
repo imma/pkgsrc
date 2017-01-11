@@ -58,6 +58,8 @@ function bootstrap {
 
     pkg ensure pkgtools/pkgin
     pkg ensure pkgtools/pkg_chk
+
+    pkgin update
   fi
 }
 
