@@ -25,7 +25,7 @@ function _pkgsrc_profile {
 
   export PKGSRC_BRANCH='pkgsrc_2016Q4'
 
-  local pth_cache="${BASEBOX_CACHE:-/data/cache}"
+  local pth_cache="/data/cache"
 
   export ID_INSTALL="$(id_install)"
 

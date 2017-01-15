@@ -7,8 +7,8 @@ function main {
   mkdir -p "$(dirname "${DISTDIR}")" || sudo install -d -o $(id -un) -g $(id -gn) "$(dirname "${DISTDIR}")"
   mkdir -p "$DISTDIR" "$PACKAGES"
 
-  if [[ -d "${BASEBOX_CACHE}/packages/${ID_INSTALL}/All" ]]; then
-    cd "${BASEBOX_CACHE}/packages/${ID_INSTALL}/All"
+  if [[ -d "/data/cache/packages/${ID_INSTALL}/All" ]]; then
+    cd "/data/cache/packages/${ID_INSTALL}/All"
     if type -P pkg_info >/dev/null; then
       (set +f; pkg_info -X *.tgz) | gzip -9 > pkg_summary.gz.$$
       mv -f pkg_summary.gz.$$ pkg_summary.gz
