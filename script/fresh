@@ -8,10 +8,6 @@ function main {
     return 1
   fi
 
-  if [[ ! -d "$shome/vendor/pkgsrc/.git" ]]; then
-    return 1
-  fi
-
   return 0
 }
 
