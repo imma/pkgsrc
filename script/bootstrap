@@ -11,7 +11,7 @@ function bootstrap {
   if [[ -d "$shome/vendor/pkgsrc" ]]; then
     (cd $shome/vendor/pkgsrc; git checkout -b "${PKGSRC_BRANCH}")
   else
-    git clone --depth 1 -b "${PKGSRC_BRANCH}" "$shome/vendor/pkgsrc-mirror"  "$shome/vendor/pkgsrc"
+    git clone --depth 1 -b "${PKGSRC_BRANCH}" "file://$shome/vendor/pkgsrc-mirror"  "$shome/vendor/pkgsrc"
   fi
 
   "$shome/script/update"
