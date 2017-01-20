@@ -20,13 +20,14 @@ function main {
       pkg update cache
       ;;
     *)
+      pkgin -y install just-importing-summary || true
+
       if ! type -P pkgin >/dev/null || ! pkgin -y install "${nm_pkg#*/}"; then
         if [[ -z "${PKG_BUILD_SOURCE:-}" ]]; then
           return 1
         fi
 
         if type -P pkgin >/dev/null; then
-          pkgin -y install just-importing-summary >/dev/null 2>/dev/null || true
           if ! pkgin -y install "${nm_pkg#*/}"; then
             if [[ ! -d "$shome/vendor/pkgsrc" ]]; then
               git clone --depth 1 -b "${PKGSRC_BRANCH}" "file://$shome/vendor/pkgsrc-mirror" "$shome/vendor/pkgsrc"
