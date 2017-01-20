@@ -25,13 +25,20 @@ function main {
           return 1
         fi
 
-        pkg package "$nm_build"
-        pkg update cache
         if type -P pkgin >/dev/null; then
-          pkgin -y install "${nm_pkg#*/}"
+          if ! pkgin -y install "${nm_pkg#*/}"; then
+            if [[ ! -d "$shome/vendor/pkgsrc" ]]; then
+              git clone --depth 1 -b "${PKGSRC_BRANCH}" "file://$shome/vendor/pkgsrc-mirror" "$shome/vendor/pkgsrc"
+            fi
+            pkg package "$nm_build"
+            rm -rf "$shome/vendor/pkgsrc"
+            pkg update cache
+            pkgin -y install "${nm_pkg#*/}"
+          fi
         else
-          pkg bin-install "$nm_build"
-          pkg update cache
+          if pkg bin-install "$nm_build"; then
+            pkg update cache
+          fi
         fi
       fi
       ;;
