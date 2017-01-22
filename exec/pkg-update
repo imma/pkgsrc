@@ -2,10 +2,10 @@
 
 function update_pkgsrc {
   pushd "$shome/vendor/pkgsrc-mirror"
-  git fetch
+  git fetch origin "${PKGSRC_BRANCH}"
   popd
   pushd "$shome/vendor/pkgsrc"
-  git fetch
+  git fetch origin "${PKGSRC_BRANCH}"
   git reset --hard origin/"${PKGSRC_BRANCH}"
   popd
   pkg_admin -K "$PKG_HOME/install/var/db/pkg" fetch-pkg-vulnerabilities
