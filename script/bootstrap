@@ -5,7 +5,14 @@ function bootstrap {
   source "$shome/script/profile"
 
   if [[ ! -d "$shome/vendor/pkgsrc-mirror" ]]; then
-    git clone --bare --depth 1 -b "${PKGSRC_BRANCH}" git@github.com:jsonn/pkgsrc "$shome/vendor/pkgsrc-mirror"
+    if [[ -d /data/git/pkgsrc-mirror.tar.gz ]]; then
+      cd "$shome"
+      tar xvfz /data/git/pkgsrc-mirror.tar.gz
+      cd vendor/pkgsrc-mirror
+      git fetch
+    else
+      git clone --bare --depth 1 -b "${PKGSRC_BRANCH}" git@github.com:jsonn/pkgsrc "$shome/vendor/pkgsrc-mirror"
+    fi
   fi
 
   if [[ -d "$shome/vendor/pkgsrc" ]]; then

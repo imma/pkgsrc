@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 function update_pkgsrc {
+  pushd "$shome/vendor/pkgsrc-mirror"
+  git fetch
+  popd
   pushd "$shome/vendor/pkgsrc"
   git fetch
   git reset --hard origin/"${PKGSRC_BRANCH}"
@@ -8,27 +11,11 @@ function update_pkgsrc {
   pkg_admin -K "$PKG_HOME/install/var/db/pkg" fetch-pkg-vulnerabilities
 }
 
-function update_homebrew {
-  if [[ -x "$(which brew 2>/dev/null || true)" ]]; then
-    brew update
-  fi
-}
-
-function update_aptitude {
-  if [[ -x "$(which aptitude 2>/dev/null || true)" ]]; then
-    sudo aptitude update
-  fi
-}
-
 function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  update_pkgsrc &
-  update_homebrew &
-  update_aptitude &
-
-  wait
+  update_pkgsrc
 }
 
 source sub "$0" "$@"
