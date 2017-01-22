@@ -5,7 +5,7 @@ function bootstrap {
   source "$shome/script/profile"
 
   if [[ ! -d "$shome/vendor/pkgsrc-mirror" ]]; then
-    if [[ -d /data/git/pkgsrc-mirror.tar.gz ]]; then
+    if [[ -f /data/git/pkgsrc-mirror.tar.gz ]]; then
       cd "$shome"
       tar xvfz /data/git/pkgsrc-mirror.tar.gz
       cd vendor/pkgsrc-mirror
