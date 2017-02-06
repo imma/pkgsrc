@@ -10,16 +10,12 @@ function main {
 
   export CC="$(basename "$(which clang gcc | head -1)")"
 
-	if [[ ! -d "$shome/vendor/pkgsrc" ]]; then
-		git clone --depth 1 -b "${PKGSRC_BRANCH}" "file://$shome/vendor/pkgsrc-mirror" "$shome/vendor/pkgsrc"
-	fi
   local nm_pkg
   for nm_pkg in "$@"; do
     pushd "$shome/vendor/pkgsrc/$nm_pkg" >/dev/null
     $BMAKE "${PKG_TARGET:-install}"
     popd >/dev/null
   done
-  rm -rf "$shome/vendor/pkgsrc"
 }
 
 source sub "$BASH_SOURCE" "$@"
