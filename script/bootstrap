@@ -55,7 +55,7 @@ function bootstrap {
       pkg ensure devel/gettext-tools
 
       pkg ensure devel/gettext || true
-      cd "${WRKOBJDIR}/devel/gettext/work"/gettext-*
+      pushd "${WRKOBJDIR}/devel/gettext/work"/gettext-*
       env CWRAPPERS_CONFIG_DIR=$(pwd)/../.cwrapper/config bmake
       popd
       pkg ensure devel/gettext
