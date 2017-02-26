@@ -33,7 +33,6 @@ function main {
               git clone --depth 1 -b "${PKGSRC_BRANCH}" "file://$shome/vendor/pkgsrc-mirror" "$shome/vendor/pkgsrc"
             fi
             pkg package "$nm_build"
-            rm -rf "$shome/vendor/pkgsrc"
             pkg update cache
             pkgin -y install "${nm_pkg#*/}"
           fi
