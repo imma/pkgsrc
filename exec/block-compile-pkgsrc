@@ -12,9 +12,10 @@ function main {
 
   local nm_pkg
   for nm_pkg in "$@"; do
-    pushd "$shome/vendor/pkgsrc/$nm_pkg" >/dev/null
-    $BMAKE "${PKG_TARGET:-install}"
-    popd >/dev/null
+    if pushd "$shome/vendor/pkgsrc/$nm_pkg" 2>/dev/null >/dev/null; then
+      $BMAKE "${PKG_TARGET:-install}"
+      popd >/dev/null
+    fi
   done
 }
 
