@@ -24,8 +24,9 @@ function main {
 
         pkg package "$nm_build"
       fi
-      pkg_add "$(set +f; ls -trhd "${PACKAGES}/All/"pkgin-*.tgz 2>/dev/null | tail -1)"
-      pkg update cache
+      if pkg_add "$(set +f; ls -trhd "${PACKAGES}/All/"pkgin-*.tgz 2>/dev/null | tail -1)" 2>/dev/null; then
+        pkg update cache
+      fi
       ;;
     *)
       install_pkg just-importing-summary >/dev/null 2>&1 || true
@@ -45,9 +46,8 @@ function main {
             install_pkg "${nm_pkg#*/}"
           fi
         else
-          if pkg bin-install "$nm_build"; then
-            pkg update cache
-          fi
+          pkg bin-install "$nm_build"
+          pkg update cache
         fi
       fi
       ;;

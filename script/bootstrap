@@ -1,8 +1,43 @@
 #!/usr/bin/env bash
 
-function bootstrap {
+function darwin_hack {
+  set +u
+
+  if ! pkg ensure devel/ncurses; then
+    pushd "${WRKOBJDIR}/devel/ncurses/work"/ncurses-*
+    make
+    popd
+    pkg ensure devel/ncurses
+  fi
+
+  pushd "${PKG_HOME}/install/include"
+  ln -nfs gettext/libintl.h .
+  popd
+
+  if ! pkg ensure devel/gettext-tools; then
+    pushd "${WRKOBJDIR}/devel/gettext-tools/work"/gettext-*
+    env CWRAPPERS_CONFIG_DIR=$(pwd)/../.cwrapper/config bmake
+    popd
+    pkg ensure devel/gettext-tools
+  fi
+
+  if ! pkg ensure devel/gettext; then
+    pushd "${WRKOBJDIR}/devel/gettext/work"/gettext-*
+    env CWRAPPERS_CONFIG_DIR=$(pwd)/../.cwrapper/config bmake
+    popd
+    pkg ensure devel/gettext
+  fi
+
+  set -u
+}
+
+function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
+
+  if [[ -z "${PKG_HOME:-}" ]]; then
+    return 0
+  fi
 
   if [[ ! -d "$shome/vendor/pkgsrc-mirror" ]]; then
     if [[ -f /data/git/pkgsrc-mirror.tar.gz ]]; then
@@ -21,57 +56,29 @@ function bootstrap {
     git clone --depth 1 -b "${PKGSRC_BRANCH}" "file://$shome/vendor/pkgsrc-mirror"  "$shome/vendor/pkgsrc"
   fi
 
-  "$shome/script/update"
+  install -d "$PKG_HOME"
 
-  if [[ -z "${PKG_HOME:-}" ]]; then
-    return 0
+  if ! pkg ensure bootstrap; then
+    case "$(uname -s)" in
+      Darwin)
+        darwin_hack
+        pkg ensure bootstrap
+        ;;
+    esac
   fi
-
-  if [[ ! -d "${PKG_HOME}" ]]; then
-    if ! install -d -o "$(id -un)" -g "$(id -gn)" "${PKG_HOME}"; then
-      sudo install -d -o "$(id -un)" -g "$(id -gn)" "${PKG_HOME}" || true
-    fi
-  fi
-  pkg ensure bootstrap
 
   case "$(uname -s)" in
     Darwin)
-      set +u
-
-      if ! pkg ensure devel/ncurses; then
-        pushd "${WRKOBJDIR}/devel/ncurses/work"/ncurses-*
-        make
-        popd
-        pkg ensure devel/ncurses
-      fi
-
-      pushd "${PKG_HOME}/install/include"
-      ln -nfs gettext/libintl.h .
-      popd
-
-      if ! pkg ensure devel/gettext-tools; then
-        pushd "${WRKOBJDIR}/devel/gettext-tools/work"/gettext-*
-        env CWRAPPERS_CONFIG_DIR=$(pwd)/../.cwrapper/config bmake
-        popd
-        pkg ensure devel/gettext-tools
-      fi
-
-      if ! pkg ensure devel/gettext; then
-        pushd "${WRKOBJDIR}/devel/gettext/work"/gettext-*
-        env CWRAPPERS_CONFIG_DIR=$(pwd)/../.cwrapper/config bmake
-        popd
-        pkg ensure devel/gettext
-      fi
-
-      set -u
-      ;;
-
-    Linux)
-      pkg ensure devel/ncurses
-      pkg ensure devel/gettext-tools
-      pkg ensure devel/gettext
+      darwin_hack
       ;;
   esac
+  exit 222
+
+  pkg ensure devel/ncurses
+  pkg ensure devel/gettext-tools
+  pkg ensure devel/gettext
+
+  pkg ensure bootstrap
 
   pkg ensure pkgtools/pkgin
   pkg ensure pkgtools/pkg_chk
@@ -98,4 +105,4 @@ function bootstrap {
   pkg ensure devel/gettext-tools
 }
 
-bootstrap
+main "$@"
