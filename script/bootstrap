@@ -72,13 +72,10 @@ function main {
       darwin_hack
       ;;
   esac
-  exit 222
 
   pkg ensure devel/ncurses
   pkg ensure devel/gettext-tools
   pkg ensure devel/gettext
-
-  pkg ensure bootstrap
 
   pkg ensure pkgtools/pkgin
   pkg ensure pkgtools/pkg_chk
