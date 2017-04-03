@@ -40,7 +40,12 @@ function main {
   fi
 
   if [[ ! -d "$shome/vendor/pkgsrc-mirror" ]]; then
-    if [[ -f /data/git/pkgsrc-mirror.tar.gz ]]; then
+    if [[ -f "/data/git/pkgsrc-mirror-${PKGSRC_BRANCH}.tar.gz" ]]; then
+      cd "$shome"
+      tar xvfz "/data/git/pkgsrc-mirror-${PKGSRC_BRANCH}.tar.gz"
+      cd vendor/pkgsrc-mirror
+      git fetch origin "${PKGSRC_BRANCH}"
+    elif [[ -f /data/git/pkgsrc-mirror.tar.gz ]]; then
       cd "$shome"
       tar xvfz /data/git/pkgsrc-mirror.tar.gz
       cd vendor/pkgsrc-mirror
