@@ -6,7 +6,7 @@ function main {
 
   local nm_pkg
   for nm_pkg in "$@"; do
-    PKG_TARGET=bin-install block compile pkgsrc "$nm_pkg"
+    env BIN_INSTALL_FLAGS=-f PKG_TARGET=bin-install block compile pkgsrc "$nm_pkg"
   done
 }
 
