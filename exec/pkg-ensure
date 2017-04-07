@@ -24,7 +24,7 @@ function main {
 
         pkg package "$nm_build"
       fi
-      if pkg_add "$(set +f; ls -trhd "${PACKAGES}/All/"pkgin-*.tgz 2>/dev/null | tail -1)" 2>/dev/null; then
+      if pkg_add -f "$(set +f; ls -trhd "${PACKAGES}/All/"pkgin-*.tgz 2>/dev/null | tail -1)" 2>/dev/null; then
         pkg update cache
       fi
       ;;
