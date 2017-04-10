@@ -1,5 +1,36 @@
 #!/usr/bin/env bash
 
+function darwin_hack {
+  set +u
+
+  if ! pkg ensure devel/ncurses; then
+    pushd "${WRKOBJDIR}/devel/ncurses/work"/ncurses-*
+    make
+    popd
+    pkg ensure devel/ncurses
+  fi
+
+  pushd "${PKG_HOME}/install/include"
+  ln -nfs gettext/libintl.h .
+  popd
+
+  if ! pkg ensure devel/gettext-tools; then
+    pushd "${WRKOBJDIR}/devel/gettext-tools/work"/gettext-*
+    env CWRAPPERS_CONFIG_DIR=$(pwd)/../.cwrapper/config bmake
+    popd
+    pkg ensure devel/gettext-tools
+  fi
+
+  if ! pkg ensure devel/gettext; then
+    pushd "${WRKOBJDIR}/devel/gettext/work"/gettext-*
+    env CWRAPPERS_CONFIG_DIR=$(pwd)/../.cwrapper/config bmake
+    popd
+    pkg ensure devel/gettext
+  fi
+
+  set -u
+}
+
 function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
@@ -32,6 +63,20 @@ function main {
 
   install -d "$PKG_HOME"
 
+  if ! pkg ensure bootstrap; then
+    case "$(uname -s)" in
+      Darwin)
+        darwin_hack
+        pkg ensure bootstrap
+        ;;
+    esac
+  fi
+
+  case "$(uname -s)" in
+    Darwin)
+      darwin_hack
+      ;;
+  esac
   pkg ensure bootstrap
 
   pkg ensure devel/ncurses
