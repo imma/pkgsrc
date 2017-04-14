@@ -28,6 +28,7 @@ function main {
     (cd $shome/vendor/pkgsrc; git checkout -b "${PKGSRC_BRANCH}")
   else
     git clone --depth 1 -b "${PKGSRC_BRANCH}" "file://$shome/vendor/pkgsrc-mirror"  "$shome/vendor/pkgsrc"
+    (cd "$shome/vendor/pkgsrc" && git pull)
   fi
 
   install -d "$PKG_HOME"
