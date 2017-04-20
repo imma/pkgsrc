@@ -27,6 +27,7 @@ function main {
   if [[ -d "$shome/vendor/pkgsrc" ]]; then
     (cd $shome/vendor/pkgsrc; git checkout -b "${PKGSRC_BRANCH}")
   else
+    (cd "$shome/vendor/pkgsrc-mirror" && git fetch --all)
     git clone --depth 1 -b "${PKGSRC_BRANCH}" "file://$shome/vendor/pkgsrc-mirror"  "$shome/vendor/pkgsrc"
     (cd "$shome/vendor/pkgsrc" && git pull)
   fi
