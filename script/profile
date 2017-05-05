@@ -18,7 +18,7 @@ function _pkgsrc_profile {
   local shome="${_pkgsrc_home:-"$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"}"
 
   if [[ -z "${PKG_HOME:-}" ]]; then
-    export PKG_HOME="$HOME"
+    export PKG_HOME="${BOARD_PATH:-$HOME}"
   fi
 
   PATH="$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$PKG_HOME/install/gnu/bin:$shome/exec:$PATH"
