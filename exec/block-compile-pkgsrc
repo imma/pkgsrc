@@ -12,7 +12,7 @@ function main {
 
   local nm_pkg
   for nm_pkg in "$@"; do
-    if pushd "$shome/vendor/pkgsrc/$nm_pkg" 2>/dev/null >/dev/null; then
+    if pushd "$PKGSRCDIR/$nm_pkg" 2>/dev/null >/dev/null; then
       $BMAKE BIN_INSTALL_FLAGS=-U PKG_BEST_EXISTS=true "${PKG_TARGET:-install}"
       popd >/dev/null
     fi

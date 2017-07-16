@@ -15,19 +15,23 @@ function main {
       cd "$PKGMIRDIR"
       git fetch origin "${PKGSRC_BRANCH}"
     else
-      git clone --bare --depth 1 -b "${PKGSRC_BRANCH}" git@github.com:netbsd/pkgsrc "$PKGMIRDIR"
+      git clone --bare -b "${PKGSRC_BRANCH}" git@github.com:netbsd/pkgsrc "$PKGMIRDIR"
     fi
   fi
 
-  if [[ ! -d "$shome/vendor/pkgsrc" ]]; then
-    git clone --depth 1 -b "${PKGSRC_BRANCH}" "file://$PKGMIRDIR"  "$shome/vendor/pkgsrc"
+  if [[ ! -d "$PKGSRCDIR" ]]; then
+    git clone -b "${PKGSRC_BRANCH}" "file://$PKGMIRDIR"  "$PKGSRCDIR"
   fi
 
-  pushd "$shome/vendor/pkgsrc"
-  git fetch origin
+  pushd "$PKGSRCDIR"
+  git remote set-url origin "file://$PKGMIRDIR"
+  git fetch origin "$PKGSRC_BRANCH"
+  git branch --set-upstream-to "origin/$PKGSRC_BRANCH"
   git reset --hard "origin/$PKGSRC_BRANCH"
-  git cheeckout -f -b "$PKGSRC_BRANCH" || true
+  git checkout -f -b "$PKGSRC_BRANCH" 2>/dev/null || true
   popd
+
+  return 1
 
   install -d "$PKG_HOME"
 

@@ -4,13 +4,13 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  if [[ ! -d "$shome/vendor/pkgsrc" ]]; then
-    git clone --depth 1 -b "${PKGSRC_BRANCH}" "file://$PKGMIRDIR"  "$shome/vendor/pkgsrc"
+  if [[ ! -d "$PKGSRCDIR" ]]; then
+    git clone -b "${PKGSRC_BRANCH}" "file://$PKGMIRDIR"  "$PKGSRCDIR"
   fi
 
   (cd "$PKGMIRDIR" && git fetch origin "${PKGSRC_BRANCH}:${PKGSRC_BRANCH}")
-  (cd "$shome/vendor/pkgsrc" && git checkout -b "${PKGSRC_BRANCH}" 2>/dev/null)
-  (cd "$shome/vendor/pkgsrc" && git reset --hard "origin/${PKGSRC_BRANCH}")
+  (cd "$PKGSRCDIR" && git checkout -b "${PKGSRC_BRANCH}" 2>/dev/null)
+  (cd "$PKGSRCDIR" && git reset --hard "origin/${PKGSRC_BRANCH}")
 
   mkdir -p "$PKG_HOME/install/var/db/pkg"
   pkg_admin -K "$PKG_HOME/install/var/db/pkg" fetch-pkg-vulnerabilities

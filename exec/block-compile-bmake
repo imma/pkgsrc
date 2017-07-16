@@ -13,7 +13,7 @@ function main {
   mkdir -p "$PACKAGES" "$WRKOBJDIR" "$DISTDIR"
   rm -rf $WRKOBJDIR/bootstrap $PACKAGES/bootstrap.tgz
 
-  (cd $shome/vendor/pkgsrc/bootstrap && \
+  (cd $PKGSRCDIR/bootstrap && \
     $PKG_OPT ./bootstrap --prefix=$PKG_HOME/install --unprivileged --abi 64 \
       --prefer-pkgsrc=yes --ignore-user-check -j4 --compiler=$CC \
       --mk-fragment=$HOME/etc/mk.conf \

@@ -6,7 +6,7 @@ function main {
 
   local nm_pkg
   for nm_pkg in "$@"; do
-    cat "$shome/vendor/pkgsrc/$nm_pkg/DESCR"
+    cat "$PKGSRCDIR/$nm_pkg/DESCR"
   done
 }
 
