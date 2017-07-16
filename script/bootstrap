@@ -43,17 +43,11 @@ function main {
   pkgin update
 
   pkg ensure security/mozilla-rootcerts
-  if [[ -f "$PKG_HOME/install/etc/openssl/certs/.done" ]]; then
-    pushd $PKG_HOME/install/etc/openssl/certs
-    if [[ ! -f ".done" ]]; then
-      mozilla-rootcerts extract
-      mozilla-rootcerts rehash
-      touch .done
-    fi
-    popd
-  else
-    mozilla-rootcerts install
-  fi
+  mozilla-rootcerts install
+  pushd $PKG_HOME/install/etc/openssl/certs
+  mozilla-rootcerts extract
+  mozilla-rootcerts rehash
+  popd
 
   pkg ensure misc/getopt
   pkg ensure net/wget
