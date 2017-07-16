@@ -31,8 +31,6 @@ function main {
   git checkout -f -b "$PKGSRC_BRANCH" 2>/dev/null || true
   popd
 
-  return 1
-
   install -d "$PKG_HOME"
 
   pkg ensure bootstrap
