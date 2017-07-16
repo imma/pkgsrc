@@ -40,7 +40,7 @@ function main {
         if type -P pkgin >/dev/null; then
           if ! install_pkg "${nm_pkg#*/}"; then
             if [[ ! -d "$shome/vendor/pkgsrc" ]]; then
-              git clone --depth 1 -b "${PKGSRC_BRANCH}" "file://$shome/vendor/pkgsrc-mirror" "$shome/vendor/pkgsrc"
+              git clone --depth 1 -b "${PKGSRC_BRANCH}" "file://$PKGMIRDIR" "$shome/vendor/pkgsrc"
             fi
             pkg package "$nm_build"
             pkg update cache

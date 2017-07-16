@@ -5,10 +5,10 @@ function main {
   source "$shome/script/profile"
 
   if [[ ! -d "$shome/vendor/pkgsrc" ]]; then
-    git clone --depth 1 -b "${PKGSRC_BRANCH}" "file://$shome/vendor/pkgsrc-mirror"  "$shome/vendor/pkgsrc"
+    git clone --depth 1 -b "${PKGSRC_BRANCH}" "file://$PKGMIRDIR"  "$shome/vendor/pkgsrc"
   fi
 
-  (cd "$shome/vendor/pkgsrc-mirror" && git fetch origin "${PKGSRC_BRANCH}:${PKGSRC_BRANCH}")
+  (cd "$PKGMIRDIR" && git fetch origin "${PKGSRC_BRANCH}:${PKGSRC_BRANCH}")
   (cd "$shome/vendor/pkgsrc" && git checkout -b "${PKGSRC_BRANCH}" 2>/dev/null)
   (cd "$shome/vendor/pkgsrc" && git reset --hard "origin/${PKGSRC_BRANCH}")
 
