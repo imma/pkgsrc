@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
 function install_pkg {
-  if type -P localhost >/dev/null && type -P ansible >/dev/null; then
-    localhost -m pkgin -- name="$1"
-  else
-    pkgin -y install "$1"
-  fi
+  pkgin -y install "$1"
 }
 
 function main {
