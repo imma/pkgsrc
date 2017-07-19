@@ -36,14 +36,15 @@ function main {
 
   pkg ensure bootstrap
 
+  ln -nfs gettext/libintl.h "$PKG_HOME/install/include/"
   for nm_pkg in devel/ncurses devel/gettext-tools devel/gettext; do
     if ! pkg ensure "$nm_pkg"; then
       case "$(uname -s)" in
         Darwin)
           set +f
-          pushed "$WRKOBJDIR/$nm_pkg"/work/*/
+          pushd "$WRKOBJDIR/$nm_pkg"/work/*/
           set -f
-          env CWRAPPERS_CONFIG_DIR=$(pwd)/../work/.cwrappers/config bmake
+          env CWRAPPERS_CONFIG_DIR=$(pwd)/../.cwrapper/config bmake
           popd
           pkg ensure "$nm_pkg"
           ;;
