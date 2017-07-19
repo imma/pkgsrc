@@ -36,7 +36,22 @@ function main {
 
   pkg ensure bootstrap
 
-  pkg ensure devel/ncurses
+  if ! pkg ensure devel/ncurses; then
+    case "$(uname -s)" in
+      Darwin)
+        set +f
+        pushed $WRKOBJDIR/devel/ncurses/work/*/
+        set -f
+        env CWRAPPERS_CONFIG_DIR=$(pwd)/../work/.cwrappers/config bmake
+        popd
+        pkg ensure devel/ncurses
+        ;;
+      *)
+        return 1
+        ;;
+    esac
+  fi
+
   pkg ensure devel/gettext-tools
   pkg ensure devel/gettext
 
