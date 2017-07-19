@@ -36,24 +36,23 @@ function main {
 
   pkg ensure bootstrap
 
-  if ! pkg ensure devel/ncurses; then
-    case "$(uname -s)" in
-      Darwin)
-        set +f
-        pushed $WRKOBJDIR/devel/ncurses/work/*/
-        set -f
-        env CWRAPPERS_CONFIG_DIR=$(pwd)/../work/.cwrappers/config bmake
-        popd
-        pkg ensure devel/ncurses
-        ;;
-      *)
-        return 1
-        ;;
-    esac
-  fi
-
-  pkg ensure devel/gettext-tools
-  pkg ensure devel/gettext
+  for nm_pkg in devel/ncurses devel/gettext-tools devel/gettext; do
+    if ! pkg ensure "$nm_pkg" then
+      case "$(uname -s)" in
+        Darwin)
+          set +f
+          pushed "$WRKOBJDIR/$nm_pkg"/work/*/
+          set -f
+          env CWRAPPERS_CONFIG_DIR=$(pwd)/../work/.cwrappers/config bmake
+          popd
+          pkg ensure "$nm_pkg"
+          ;;
+        *)
+          return 1
+          ;;
+      esac
+    fi
+  done
 
   pkg ensure pkgtools/pkgin
   pkg ensure pkgtools/pkg_chk
