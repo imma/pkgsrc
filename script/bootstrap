@@ -37,7 +37,7 @@ function main {
   pkg ensure bootstrap
 
   for nm_pkg in devel/ncurses devel/gettext-tools devel/gettext; do
-    if ! pkg ensure "$nm_pkg" then
+    if ! pkg ensure "$nm_pkg"; then
       case "$(uname -s)" in
         Darwin)
           set +f
