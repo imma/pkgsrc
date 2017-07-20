@@ -10,9 +10,9 @@ function main {
   fi
 
   if [[ ! -d "$PKGMIRDIR" ]]; then
-    if [[ -f "/data/git/pkgsrc-mirror-${PKGSRC_BRANCH}.tar.gz" ]]; then
+    if [[ -f "/data/cache/git/pkgsrc-mirror-${PKGSRC_BRANCH}.tar.gz" ]]; then
       cd "$shome"
-      tar xvfz "/data/git/pkgsrc-mirror-${PKGSRC_BRANCH}.tar.gz"
+      tar xvfz "/data/cache/git/pkgsrc-mirror-${PKGSRC_BRANCH}.tar.gz"
       cd "$PKGMIRDIR"
       git fetch origin "${PKGSRC_BRANCH}"
     else
