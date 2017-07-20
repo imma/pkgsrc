@@ -61,7 +61,7 @@ function main {
   pkgin update
 
   pkg ensure security/mozilla-rootcerts
-  mozilla-rootcerts install
+  mozilla-rootcerts install || true
   pushd $PKG_HOME/install/etc/openssl/certs
   mozilla-rootcerts extract
   mozilla-rootcerts rehash
