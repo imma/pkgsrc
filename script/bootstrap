@@ -11,9 +11,9 @@ function main {
 
   if [[ ! -d "$PKGMIRDIR" ]]; then
     if [[ -f "/data/cache/git/pkgsrc-mirror-${PKGSRC_BRANCH}.tar.gz" ]]; then
-      cd "$shome"
-      tar xvfz "/data/cache/git/pkgsrc-mirror-${PKGSRC_BRANCH}.tar.gz"
+      mkdir -p "$PKGMIRDIR"
       cd "$PKGMIRDIR"
+      tar xvfz "/data/cache/git/pkgsrc-mirror-${PKGSRC_BRANCH}.tar.gz"
       git fetch origin "${PKGSRC_BRANCH}"
     else
       git clone --bare -b "${PKGSRC_BRANCH}" git@github.com:netbsd/pkgsrc "$PKGMIRDIR"
