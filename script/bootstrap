@@ -36,6 +36,7 @@ function main {
 
   pkg ensure bootstrap
 
+  mkdir -p "$PKG_HOME/install/include"
   ln -nfs gettext/libintl.h "$PKG_HOME/install/include/"
   for nm_pkg in devel/ncurses devel/gettext-tools devel/gettext; do
     if ! pkg ensure "$nm_pkg"; then
