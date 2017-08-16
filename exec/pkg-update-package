@@ -5,6 +5,7 @@ function main {
   source "$shome/script/profile"
 
   local nm_pkg="$1"; shift
+  pkg clean "$nm_pkg"
   PKG_TARGET=update block compile pkgsrc "$nm_pkg"
   PKG_TARGET=install block compile pkgsrc "$nm_pkg"
 }
