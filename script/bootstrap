@@ -24,14 +24,6 @@ function main {
     git clone -b "${PKGSRC_BRANCH}" "file://$PKGMIRDIR"  "$PKGSRCDIR"
   fi
 
-  pushd "$PKGSRCDIR"
-  git remote set-url origin "file://$PKGMIRDIR"
-  git fetch origin "$PKGSRC_BRANCH"
-  git branch --set-upstream-to "origin/$PKGSRC_BRANCH"
-  git reset --hard "origin/$PKGSRC_BRANCH"
-  git checkout -f -b "$PKGSRC_BRANCH" 2>/dev/null || true
-  popd
-
   install -d "$PKG_HOME"
 
   pkg ensure bootstrap
