@@ -37,7 +37,7 @@ function main {
           set +f
           pushd "$WRKOBJDIR/$nm_pkg"/work/*/
           set -f
-          env CWRAPPERS_CONFIG_DIR=$(pwd)/../.cwrapper/config bmake
+          env CWRAPPERS_CONFIG_DIR=$(pwd)/../.cwrapper/config bmake || env CWRAPPERS_CONFIG_DIR=$(pwd)/../.cwrapper/config make
           popd
           pkg ensure "$nm_pkg"
           ;;
