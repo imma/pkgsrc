@@ -21,7 +21,7 @@ function _pkgsrc_profile {
     export PKG_HOME="${BOARD_PATH:-$HOME}"
   fi
 
-  PATH="$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$PKG_HOME/install/gnu/bin:$shome/exec:$PATH"
+  PATH="$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$PKG_HOME/install/gnu/bin:$shome/exec:"$(python -m site --user-base)/bin:$PATH"
 
   export PKGSRC_BRANCH='pkgsrc-2017Q2'
 
