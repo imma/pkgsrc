@@ -1,16 +1,7 @@
 #!/usr/bin/env bash
 
 function id_install {
-  local nm_os
-  case "$(uname -s)" in
-    Darwin|Linux)
-      nm_os="$(uname -s)_$(uname -r | cut -d- -f1 | cut -d. -f1-2)"
-      ;;
-    *)
-      nm_os="$(uname -s)"
-      ;;
-  esac
-
+  local nm_os="${DISTRIB_ID}_$(uname -r | cut -d- -f1 | cut -d. -f1-2)"
   echo "$nm_os/$PKG_HOME/$PKGSRC_BRANCH" | tr / _ | tr . _ | perl -pe 's{__+}{_}'
 }
 
