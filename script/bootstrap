@@ -32,7 +32,7 @@ function main {
   ln -nfs gettext/libintl.h "$PKG_HOME/install/include/"
   for nm_pkg in devel/ncurses devel/ncursesw devel/gettext-tools devel/gettext textproc/openjade; do
     if ! pkg ensure "$nm_pkg"; then
-      case "$(uname -s)" in
+      case "${DISTRIB_ID}" in
         Darwin)
           set +f
           pushd "$WRKOBJDIR/$nm_pkg"/work/*/
