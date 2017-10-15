@@ -9,19 +9,8 @@ function main {
     return 0
   fi
 
-  if [[ ! -d "$PKGMIRDIR" ]]; then
-    if [[ -f "${CACHE_DIR}/git/pkgsrc-mirror-${PKGSRC_BRANCH}.tar.gz" ]]; then
-      mkdir -p "$PKGMIRDIR"
-      cd "$PKGMIRDIR"
-      tar xvfz "${CACHE_DIR}/git/pkgsrc-mirror-${PKGSRC_BRANCH}.tar.gz"
-      git fetch origin "${PKGSRC_BRANCH}"
-    else
-      git clone --bare -b "${PKGSRC_BRANCH}" git@github.com:netbsd/pkgsrc "$PKGMIRDIR"
-    fi
-  fi
-
   if [[ ! -d "$PKGSRCDIR" ]]; then
-    git clone -b "${PKGSRC_BRANCH}" "file://$PKGMIRDIR"  "$PKGSRCDIR"
+    git clone -b "${PKGSRC_BRANCH}" "https://github.com/NetBSD/pkgsrc"  "$PKGSRCDIR"
   fi
 
   install -d "$PKG_HOME"

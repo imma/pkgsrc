@@ -35,9 +35,6 @@ function main {
 
         if type -P pkgin >/dev/null; then
           if ! install_pkg "${nm_pkg#*/}"; then
-            if [[ ! -d "$PKGSRCDIR" ]]; then
-              git clone --depth 1 -b "${PKGSRC_BRANCH}" "file://$PKGMIRDIR" "$PKGSRCDIR"
-            fi
             pkg package "$nm_build"
             pkg update cache
             install_pkg "${nm_pkg#*/}"
