@@ -13,6 +13,10 @@ function main {
     git clone -b "${PKGSRC_BRANCH}" "https://github.com/NetBSD/pkgsrc"  "$PKGSRCDIR"
   fi
 
+  if [[ ! -d "$PKGWIPDIR" ]]; then
+    git clone -b "${PKGWIP_BRANCH}" "https://github.com/joyent/pkgsrc-wip"  "$PKGWIPDIR"
+  fi
+
   install -d "$PKG_HOME"
 
   pkg ensure bootstrap
