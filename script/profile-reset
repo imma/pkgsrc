@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+umask 022
+export PATH="/usr/bin:/usr/sbin:/bin:/sbin:$PATH"
+
+unset CFLAGS CXXFLAGS CPPFLAGS FC FFLAGS LD LDFLAGS LD_LIBRARY_PATH
+export CC=cc
+export CXX=c++
+export CPP="$(which cpp)"
+export PKGSRC_USE_FORTIFY=no
+
+export LANG=C # osx has some sed byte issue

@@ -7,6 +7,7 @@ function install_pkg {
 function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
+  source "$shome/script/profile-reset"
 
   local nm_pkg="$1"; shift
   local nm_build="${1:-$nm_pkg}"

@@ -3,6 +3,7 @@
 function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
+  source "$shome/script/profile-reset"
 
   pkgin -p ls | cut -d';' -f1  | perl -pe 's{-[^-\s]+$}{}' | sort -u
 }
