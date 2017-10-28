@@ -54,8 +54,16 @@ function main {
   mozilla-rootcerts rehash
   popd
 
+  case "${DISTRIB_ID}" in
+    Darwin)
+      true
+      ;;
+    *)
+      pkg ensure net/wget
+      ;;
+  esac
+
   pkg ensure misc/getopt
-  pkg ensure net/wget
   pkg ensure www/curl
   pkg ensure devel/gmake
   pkg ensure devel/gettext-tools
