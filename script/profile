@@ -14,16 +14,8 @@ function _pkgsrc_profile {
 
   PATH="$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$PKG_HOME/install/gnu/bin:$shome/exec:$PATH"
 
-  case "${DISTRIB_ID}" in
-    Darwin)
-      export PKGSRC_BRANCH='pkgsrc-2017Q2'
-      export PKGWIP_BRANCH='2017Q2'
-      ;;
-    *)
-      export PKGSRC_BRANCH='pkgsrc-2017Q3'
-      export PKGWIP_BRANCH='2017Q3'
-      ;;
-  esac
+  export PKGSRC_BRANCH='pkgsrc-2017Q3'
+  export PKGWIP_BRANCH='2017Q3'
 
   local pth_cache="${DATA}/cache"
 

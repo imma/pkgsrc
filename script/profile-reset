@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 umask 022
-export PATH="/usr/bin:/usr/sbin:/bin:/sbin:$PATH"
+export PATH="$PKG_HOME/install/sbin:$PKG_HOME/install/bin:/usr/bin:/usr/sbin:/bin:/sbin:$PATH"
 
 unset CFLAGS CXXFLAGS CPPFLAGS FC FFLAGS LD LDFLAGS LD_LIBRARY_PATH
 export CC=cc
