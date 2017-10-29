@@ -54,19 +54,13 @@ function main {
   mozilla-rootcerts rehash
   popd
 
-  case "${DISTRIB_ID}" in
-    Darwin)
-      true
-      ;;
-    *)
-      pkg ensure net/wget
-      ;;
-  esac
-
   pkg ensure misc/getopt
   pkg ensure www/curl
   pkg ensure devel/gmake
   pkg ensure devel/gettext-tools
+
+  pkg ensure sysutils/findutils
+  pkg ensure sysutils/coreutils
 }
 
 main "$@"
