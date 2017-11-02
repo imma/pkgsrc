@@ -5,11 +5,13 @@ function main {
   source "$shome/script/profile"
   source "$shome/script/profile-reset"
 
-  (cd "$PKGSRCDIR" && git checkout -b "${PKGSRC_BRANCH}" 2>/dev/null)
+  set -x
+
+  (cd "$PKGSRCDIR" && git checkout -b "${PKGSRC_BRANCH}" 2>/dev/null || true)
   (cd "$PKGSRCDIR" && git reset --hard "origin/${PKGSRC_BRANCH}")
   (cd "$PKGSRCDIR" && git pull origin "${PKGSRC_BRANCH}")
 
-  (cd "$PKGWIPDIR" && git checkout -b "${PKGWIP_BRANCH}" 2>/dev/null)
+  (cd "$PKGWIPDIR" && git checkout -b "${PKGWIP_BRANCH}" 2>/dev/null || true)
   (cd "$PKGWIPDIR" && git reset --hard "origin/${PKGWIP_BRANCH}")
   (cd "$PKGWIPDIR" && git pull origin "${PKGWIP_BRANCH}")
 
