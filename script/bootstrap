@@ -59,6 +59,7 @@ function main {
   pkg ensure devel/gmake
   pkg ensure devel/gettext-tools
 
+  pkg ensure archivers/gtar
   pkg ensure sysutils/findutils
   pkg ensure sysutils/coreutils
 }
