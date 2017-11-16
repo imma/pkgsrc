@@ -24,7 +24,7 @@ function main {
 
   mkdir -p "$PKG_HOME/install/include"
   ln -nfs gettext/libintl.h "$PKG_HOME/install/include/"
-  for nm_pkg in devel/ncurses devel/ncursesw devel/gettext-tools devel/gettext textproc/openjade; do
+  for nm_pkg in devel/ncurses devel/ncursesw devel/gettext-tools devel/gettext textproc/openjade devel/pcre2; do
     if ! pkg ensure "$nm_pkg"; then
       case "${DISTRIB_ID}" in
         Darwin)
