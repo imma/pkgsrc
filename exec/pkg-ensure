@@ -21,9 +21,7 @@ function main {
 
         pkg package "$nm_build"
       fi
-      if pkg_add -f "$(set +f; ls -trhd "${PACKAGES}/All/"pkgin-*.tgz 2>/dev/null | tail -1)" 2>/dev/null; then
-        pkg update cache
-      fi
+      pkg_add -f "$(set +f; ls -trhd "${PACKAGES}/All/"pkgin-*.tgz 2>/dev/null | tail -1)" 2>/dev/null
       ;;
     *)
       pkg update cache
@@ -42,11 +40,11 @@ function main {
           fi
         else
           pkg bin-install "$nm_build"
-          pkg update cache
         fi
       fi
       ;;
   esac
+  pkg update cache
 }
 
 source sub "$0" "$@"
