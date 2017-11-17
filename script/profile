@@ -32,8 +32,8 @@ function _pkgsrc_profile {
 
   export SH="$(which bash)"
 
-  export PKGSRCDIR="${DATA}/git/${PKGSRC_BRANCH}"
-  export PKGWIPDIR="${DATA}/git/${PKGSRC_BRANCH}-wip"
+  export PKGSRCDIR="${BOARD_PATH}/${PKGSRC_BRANCH}"
+  export PKGWIPDIR="${BOARD_PATH}/${PKGSRC_BRANCH}-wip"
 
   export PKG_REPOS="file://$PACKAGES/All"
 

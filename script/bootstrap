@@ -11,11 +11,15 @@ function main {
   fi
 
   if [[ ! -d "$PKGSRCDIR" ]]; then
-    git clone -b "${PKGSRC_BRANCH}" "https://github.com/NetBSD/pkgsrc"  "$PKGSRCDIR"
+    pushd "${BOARD_PATH}"
+    tar xfz "${DATA}/git/${PKGSRC_BRANCH}.tar.gz"
+    popd
   fi
 
   if [[ ! -d "$PKGWIPDIR" ]]; then
-    git clone -b "${PKGWIP_BRANCH}" "https://github.com/joyent/pkgsrc-wip"  "$PKGWIPDIR"
+    pushd "${BOARD_PATH}"
+    tar xfz "${DATA}/git/${PKGSRC_BRANCH}-wip.tar.gz"
+    popd
   fi
 
   install -d "$PKG_HOME"
