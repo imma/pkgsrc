@@ -44,6 +44,7 @@ function main {
 
   pkg ensure pkgtools/pkgin
   pkg ensure pkgtools/pkg_chk
+  pkg ensure pkgtools/lintpkgsrc
 
   pkgin update
 

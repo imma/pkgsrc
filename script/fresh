@@ -5,7 +5,7 @@ function main {
   source "$shome/script/profile"
   source "$shome/script/profile-reset"
 
-  for a in bmake gtar pkgin; do 
+  for a in bmake gtar pkgin lintpkgsrc; do 
     if [[ ! -x "$PKG_HOME/install/bin/$a" ]]; then
       return 1
     fi
