@@ -11,11 +11,13 @@ function main {
   fi
 
   if [[ ! -d "$PKGSRCDIR" ]]; then
-    git clone -b "${PKGSRC_BRANCH}" "https://github.com/NetBSD/pkgsrc"  "$PKGSRCDIR"
+    echo "ERROR: missing pkgsrc repo in $PKGSRCDIR" 1>&2
+    return 1
   fi
 
   if [[ ! -d "$PKGWIPDIR" ]]; then
-    git clone -b "${PKGWIP_BRANCH}" "https://github.com/joyent/pkgsrc-wip"  "$PKGWIPDIR"
+    echo "ERROR: missing pkgsrc-wip repo in $PKGWIPDIR" 1>&2
+    return 1
   fi
 
   install -d "$PKG_HOME"
