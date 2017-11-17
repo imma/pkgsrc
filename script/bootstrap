@@ -12,13 +12,13 @@ function main {
 
   if [[ ! -d "$PKGSRCDIR" ]]; then
     pushd "${BOARD_PATH}"
-    tar xfz "${DATA}/git/${PKGSRC_BRANCH}.tar.gz"
+    tar xfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz"
     popd
   fi
 
   if [[ ! -d "$PKGWIPDIR" ]]; then
     pushd "${BOARD_PATH}"
-    tar xfz "${DATA}/git/${PKGSRC_BRANCH}-wip.tar.gz"
+    tar xfz "${DATA}/cache/git/${PKGSRC_BRANCH}-wip.tar.gz"
     popd
   fi
 
