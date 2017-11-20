@@ -14,6 +14,8 @@ function main {
   fi
 
   while [[ "$#" -gt 0 ]]; do
+    export PACKAGES="${1%%/All}"
+    export PKG_REPOS="file://${1}"
     cd "$1"; shift
 
     if type -P pkg_info >/dev/null; then
