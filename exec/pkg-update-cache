@@ -13,14 +13,17 @@ function main {
     set -- "${PACKAGES}/All"
   fi
 
-  cd "$1"
-  if type -P pkg_info >/dev/null; then
-    (set +f; pkg_info -X *.tgz) | gzip -9 > pkg_summary.gz.$$
-    mv -f pkg_summary.gz.$$ pkg_summary.gz
-  fi
-  if type -P pkgin >/dev/null; then
-    pkgin update
-  fi
+  while [[ "$#" -gt 0 ]]; do
+    cd "$1"; shift
+
+    if type -P pkg_info >/dev/null; then
+      (set +f; pkg_info -X *.tgz) | gzip -9 > pkg_summary.gz.$$
+      mv -f pkg_summary.gz.$$ pkg_summary.gz
+    fi
+    if type -P pkgin >/dev/null; then
+      pkgin update
+    fi
+  done
 }
 
 source sub "$0" "$@"
