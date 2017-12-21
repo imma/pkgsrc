@@ -18,8 +18,10 @@ function main {
   mkdir -p "$PKG_HOME/install/var/db/pkg"
   pkg_admin -K "$PKG_HOME/install/var/db/pkg" fetch-pkg-vulnerabilities
 
-  brew update-reset
-  brew update
+  if type -P brew >/dev/null; then
+    brew update-reset
+    brew update
+  fi
 }
 
 source sub "$0" "$@"
