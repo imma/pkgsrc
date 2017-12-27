@@ -2,5 +2,6 @@
   "require": [
     "java",
     "base"
-  ]
+  ],
+  "versions": {}
 }
