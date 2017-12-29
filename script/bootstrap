@@ -40,7 +40,8 @@ function main {
           pkg ensure "$nm_pkg"
           ;;
         *)
-          return 1
+          touch "$WRKOBJDIR/devel/gettext/work/.destdir/home/ubuntu/install/lib/preloadable_libintl.so" # alpine
+          pkg ensure "$nm_pkg"
           ;;
       esac
     fi
