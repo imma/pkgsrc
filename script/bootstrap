@@ -12,13 +12,23 @@ function main {
 
   if [[ ! -d "$PKGSRCDIR" ]]; then
     pushd "${BOARD_PATH}"
-    tar xfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz"
+    if [[ -f "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz" ]]; then
+      tar xfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz"
+    else
+      git clone -b "$PKGSRC_BRANCH" git@github.com:netbsd/pkgsrc "$PKGSRCDIR"
+      tar cfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz" "$PKGSRCDIR"
+    fi
     popd
   fi
 
   if [[ ! -d "$PKGWIPDIR" ]]; then
     pushd "${BOARD_PATH}"
-    tar xfz "${DATA}/cache/git/${PKGSRC_BRANCH}-wip.tar.gz"
+    if [[ -f "${DATA}/cache/git/${PKGSRC_BRANCH}-wip.tar.gz" ]]; then
+      tar xfz "${DATA}/cache/git/${PKGSRC_BRANCH}-wip.tar.gz"
+    else
+      git clone -b "$PKGWIP_BRANCH" git@github.com:joyent/pkgsrc-wip "$PKGWIPDIR"
+      tar cvz "${DATA}/cache/git/${PKGSRC_BRANCH}-wip.tar.gz" "$PKGWIPDIR"
+    fi
     popd
   fi
 
