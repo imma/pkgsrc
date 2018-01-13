@@ -10,6 +10,8 @@ function main {
     return 0
   fi
 
+  mkdir -p "${DATA}/cache/git"
+
   if [[ ! -d "$PKGSRCDIR" ]]; then
     pushd "${BOARD_PATH}"
     if [[ -f "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz" ]]; then
