@@ -17,6 +17,9 @@ function main {
     if [[ -f "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz" ]]; then
       (cd / && tar xfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz")
     else
+      wget http://cdn.netbsd.org/pub/pkgsrc/${PKGSRC_BRANCH}/${PKGSRC_BRANCH}.tar.gz
+      tar xfz "${PKGSRC_BRANCH}.tar.gz"
+      mv pkgsrc "$PKGSRC_BRANCH}"
       git clone -b "$PKGSRC_BRANCH" git@github.com:netbsd/pkgsrc "$PKGSRCDIR"
       (cd / && tar cfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz" "$PKGSRCDIR")
     fi
