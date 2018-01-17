@@ -20,7 +20,6 @@ function main {
       wget http://cdn.netbsd.org/pub/pkgsrc/${PKGSRC_BRANCH}/${PKGSRC_BRANCH}.tar.gz
       tar xfz "${PKGSRC_BRANCH}.tar.gz"
       mv pkgsrc "$PKGSRC_BRANCH}"
-      git clone -b "$PKGSRC_BRANCH" git@github.com:netbsd/pkgsrc "$PKGSRCDIR"
       (cd / && tar cfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz" "$PKGSRCDIR")
     fi
     popd
