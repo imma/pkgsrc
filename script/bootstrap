@@ -26,17 +26,6 @@ function main {
     popd
   fi
 
-  if [[ ! -d "$PKGWIPDIR" ]]; then
-    pushd "${BOARD_PATH}"
-    if [[ -f "${DATA}/cache/git/${PKGSRC_BRANCH}-wip.tar.gz" ]]; then
-      tar xfz "${DATA}/cache/git/${PKGSRC_BRANCH}-wip.tar.gz"
-    else
-      git clone -b "$PKGWIP_BRANCH" git@github.com:joyent/pkgsrc-wip "$PKGWIPDIR"
-      tar cfz "${DATA}/cache/git/${PKGSRC_BRANCH}-wip.tar.gz" "${PKGWIPDIR##*/}"
-    fi
-    popd
-  fi
-
   install -d "$PKG_HOME"
 
   pkg ensure bootstrap

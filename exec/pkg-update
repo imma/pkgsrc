@@ -11,10 +11,6 @@ function main {
   (cd "$PKGSRCDIR" && git reset --hard "origin/${PKGSRC_BRANCH}")
   (cd "$PKGSRCDIR" && git pull origin "${PKGSRC_BRANCH}")
 
-  (cd "$PKGWIPDIR" && git checkout -b "${PKGWIP_BRANCH}" 2>/dev/null || true)
-  (cd "$PKGWIPDIR" && git reset --hard "origin/${PKGWIP_BRANCH}")
-  (cd "$PKGWIPDIR" && git pull origin "${PKGWIP_BRANCH}")
-
   mkdir -p "$PKG_HOME/install/var/db/pkg"
   pkg_admin -K "$PKG_HOME/install/var/db/pkg" fetch-pkg-vulnerabilities
 

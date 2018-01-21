@@ -15,7 +15,6 @@ function _pkgsrc_profile {
   PATH="$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$PKG_HOME/install/gnu/bin:$shome/exec:$PATH"
 
   export PKGSRC_BRANCH='pkgsrc-2017Q4'
-  export PKGWIP_BRANCH='2017Q4'
 
   local pth_cache="${DATA}/cache"
 
@@ -33,7 +32,6 @@ function _pkgsrc_profile {
   export SH="$(which bash)"
 
   export PKGSRCDIR="${BOARD_PATH}/${PKGSRC_BRANCH}"
-  export PKGWIPDIR="${BOARD_PATH}/${PKGSRC_BRANCH}-wip"
 
   export PKG_REPOS="file://$PACKAGES/All"
 
