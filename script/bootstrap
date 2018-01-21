@@ -15,13 +15,13 @@ function main {
   if [[ ! -d "$PKGSRCDIR" ]]; then
     pushd "${BOARD_PATH}"
     if [[ -f "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz" ]]; then
-      (cd / && tar xfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz")
+      tar xfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz"
     else
       wget http://cdn.netbsd.org/pub/pkgsrc/${PKGSRC_BRANCH}/${PKGSRC_BRANCH}.tar.gz
       tar xfz "${PKGSRC_BRANCH}.tar.gz"
       rm -f "${PKGSRC_BRANCH}.tar.gz"
       mv pkgsrc "$PKGSRC_BRANCH"
-      (cd / && tar cfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz" "$PKGSRCDIR")
+      tar cfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz" "${PKGSRCDIR##*/}"
     fi
     popd
   fi
@@ -29,10 +29,10 @@ function main {
   if [[ ! -d "$PKGWIPDIR" ]]; then
     pushd "${BOARD_PATH}"
     if [[ -f "${DATA}/cache/git/${PKGSRC_BRANCH}-wip.tar.gz" ]]; then
-      (cd / && tar xfz "${DATA}/cache/git/${PKGSRC_BRANCH}-wip.tar.gz")
+      tar xfz "${DATA}/cache/git/${PKGSRC_BRANCH}-wip.tar.gz"
     else
       git clone -b "$PKGWIP_BRANCH" git@github.com:joyent/pkgsrc-wip "$PKGWIPDIR"
-      (cd / && tar cfz "${DATA}/cache/git/${PKGSRC_BRANCH}-wip.tar.gz" "$PKGWIPDIR")
+      tar cfz "${DATA}/cache/git/${PKGSRC_BRANCH}-wip.tar.gz" "${PKGWIPDIR##*/}"
     fi
     popd
   fi
