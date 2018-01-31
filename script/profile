@@ -14,10 +14,10 @@ function _pkgsrc_profile {
 
   case "${DISTRIB_ID}" in
     Darwin)
-      PATH="$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$shome/exec:$PATH"
+      PATH="${BOARD_PATH}/homebrew/opt/coreutils/libexec/gnubin:$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$shome/exec:$PATH"
       ;;
     *)
-      PATH="$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$PKG_HOME/install/gnu/bin:$shome/exec:$PATH"
+      PATH="$PKG_HOME/install/gnu/bin:$shome/bin:$PKG_HOME/install/sbin:$PKG_HOME/install/bin:$shome/exec:$PATH"
       ;;
   esac
 
