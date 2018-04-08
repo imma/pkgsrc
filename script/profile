@@ -21,7 +21,7 @@ function _pkgsrc_profile {
       ;;
   esac
 
-  export PKGSRC_BRANCH='pkgsrc-2017Q4'
+  export PKGSRC_BRANCH='pkgsrc-2018Q1'
 
   export PKG_CONFIG_PATH="${PKG_HOME}/install/lib/pkgconfig"
 
