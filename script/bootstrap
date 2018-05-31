@@ -18,6 +18,7 @@ function main {
       tar xfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz"
     else
       wget http://cdn.netbsd.org/pub/pkgsrc/${PKGSRC_BRANCH}/pkgsrc.tar.gz
+      mv pkgsrc.tar.gz "${PKGSRC_BRANCH}.tar.gz"
       tar xfz "${PKGSRC_BRANCH}.tar.gz"
       rm -f "${PKGSRC_BRANCH}.tar.gz"
       mv pkgsrc "$PKGSRC_BRANCH"
