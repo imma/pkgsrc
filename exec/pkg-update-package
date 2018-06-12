@@ -9,6 +9,7 @@ function main {
   pkg clean "$nm_pkg"
   PKG_TARGET=update block compile pkgsrc "$nm_pkg"
   PKG_TARGET=install block compile pkgsrc "$nm_pkg"
+  pkg ensure "$nm_pkg"
 }
 
 source sub "$0" "$@"
