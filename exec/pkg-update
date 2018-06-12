@@ -5,19 +5,13 @@ function main {
   source "$shome/script/profile"
   source "$shome/script/profile-reset"
 
-  set -x
-
-  (cd "$PKGSRCDIR" && git checkout -b "${PKGSRC_BRANCH}" 2>/dev/null || true)
-  (cd "$PKGSRCDIR" && git reset --hard "origin/${PKGSRC_BRANCH}")
-  (cd "$PKGSRCDIR" && git pull origin "${PKGSRC_BRANCH}")
-
-  mkdir -p "$PKG_HOME/install/var/db/pkg"
-  pkg_admin -K "$PKG_HOME/install/var/db/pkg" fetch-pkg-vulnerabilities
-
-  if type -P brew >/dev/null; then
-    brew update-reset
-    brew update
-  fi
+  rm -f pkgsrc.tar.gz
+  wget http://cdn.netbsd.org/pub/pkgsrc/${PKGSRC_BRANCH_DIR}/pkgsrc.tar.gz
+  mv pkgsrc.tar.gz "${PKGSRC_BRANCH}.tar.gz"
+  rm -rf "${PKGSRC_BRANCH}"
+  tar xfz "${PKGSRC_BRANCH}.tar.gz"
+  rm -f "${PKGSRC_BRANCH}.tar.gz"
+  mv pkgsrc "$PKGSRC_BRANCH"
 }
 
 source sub "$0" "$@"

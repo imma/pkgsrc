@@ -17,11 +17,7 @@ function main {
     if [[ -f "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz" ]]; then
       tar xfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz"
     else
-      wget http://cdn.netbsd.org/pub/pkgsrc/${PKGSRC_BRANCH_DIR}/pkgsrc.tar.gz
-      mv pkgsrc.tar.gz "${PKGSRC_BRANCH}.tar.gz"
-      tar xfz "${PKGSRC_BRANCH}.tar.gz"
-      rm -f "${PKGSRC_BRANCH}.tar.gz"
-      mv pkgsrc "$PKGSRC_BRANCH"
+      pkg update
       tar cfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz" "${PKGSRCDIR##*/}"
     fi
     popd
