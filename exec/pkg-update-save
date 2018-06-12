@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+function main {
+  local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
+  source "$shome/script/profile"
+  source "$shome/script/profile-reset"
+
+  tar cfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz" "${PKGSRCDIR##*/}"
+}
+
+source sub "$0" "$@"

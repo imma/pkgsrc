@@ -18,7 +18,7 @@ function main {
       tar xfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz"
     else
       pkg update
-      tar cfz "${DATA}/cache/git/${PKGSRC_BRANCH}.tar.gz" "${PKGSRCDIR##*/}"
+      pkg update save
     fi
     popd
   fi
