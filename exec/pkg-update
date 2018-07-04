@@ -12,6 +12,8 @@ function main {
   tar xfz "${PKGSRC_BRANCH}.tar.gz"
   rm -f "${PKGSRC_BRANCH}.tar.gz"
   mv pkgsrc "$PKGSRC_BRANCH"
+
+  pkgin -g
 }
 
 source sub "$0" "$@"
