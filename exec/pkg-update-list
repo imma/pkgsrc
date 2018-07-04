@@ -5,6 +5,7 @@ function main {
   source "$shome/script/profile"
   source "$shome/script/profile-reset"
 
+  $PKG_OPT pkg_chk -g
   $PKG_OPT pkg_chk -u -q
 }
 

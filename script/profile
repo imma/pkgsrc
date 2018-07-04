@@ -43,7 +43,7 @@ function _pkgsrc_profile {
 
   export PKGSRCDIR="${BOARD_PATH}/${PKGSRC_BRANCH}"
 
-  export PKG_REPOS="file://$PACKAGES/All"
+  export PKG_REPOS="file://$PACKAGES"
 
   export PKG_BUILD_SOURCE=1
 }

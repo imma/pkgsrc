@@ -13,7 +13,7 @@ function main {
   rm -f "${PKGSRC_BRANCH}.tar.gz"
   mv pkgsrc "$PKGSRC_BRANCH"
 
-  pkgin -g
+  $PKG_OPT pkg_chk -g
 }
 
 source sub "$0" "$@"
